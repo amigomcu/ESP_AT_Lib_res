@@ -1160,76 +1160,76 @@
     <group>
         <name>ESP API</name>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\api\esp_netconn.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\api\esp_netconn.c</name>
         </file>
     </group>
     <group>
         <name>ESP CORE</name>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_ap.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_ap.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_buff.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_buff.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_conn.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_conn.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_debug.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_debug.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_evt.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_evt.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_hostname.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_hostname.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_input.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_input.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_int.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_int.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_mem.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_mem.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_parser.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_parser.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_pbuf.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_pbuf.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_ping.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_ping.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_sntp.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_sntp.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_sta.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_sta.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_threads.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_threads.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_timeout.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_timeout.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_unicode.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_unicode.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\esp\esp_wps.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\esp\esp_wps.c</name>
         </file>
     </group>
     <group>
         <name>ESP LL</name>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\system\esp_ll_stm32l496g_discovery.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\system\esp_ll_stm32l496g_discovery.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\..\..\src\system\esp_sys_cmsis_os.c</name>
+            <name>$PROJ_DIR$\..\..\..\..\ESP_AT_Lib\src\system\esp_sys_cmsis_os.c</name>
         </file>
     </group>
     <group>

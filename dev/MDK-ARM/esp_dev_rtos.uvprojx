@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F769xx,USE_HAL_DRIVER,USE_FULL_LL_DRIVER,ARM_MATH_CM7,__FPU_PRESENT=1,STM32F7XX,STM32F769_DISCOVERY,HSE_VALUE=25000000,RCC_OSCILLATORTYPE=RCC_OSCILLATORTYPE_HSE,RCC_PLLSOURCE=RCC_PLLSOURCE_HSE,RCC_PLLM=25,RCC_PLLN=432,RCC_PLLP=2,RCC_PLLQ=9</Define>
               <Undefine></Undefine>
-              <IncludePath>..\include;..\..\src\include;..\..\snippets\include;..\..\libs;..\..\libs\st_hal\STM32F7xx_HAL_Driver\Inc;..\..\libs\st_hal\CMSIS\Device\ST\STM32F7xx\Include;..\..\libs\st_hal\CMSIS\Include;..\..\libs\FreeRTOS\include;..\..\libs\FreeRTOS\CMSIS_RTOS;..\..\libs\FreeRTOS\portable\RVDS\ARM_CM7\r0p1;..\..\libs\fatfs;..\..\libs\fatfs\drivers;..\..\libs\fatfs\option</IncludePath>
+              <IncludePath>..\include;..\..\ESP_AT_Lib\src\include;..\..\snippets\include;..\..\libs;..\..\libs\st_hal\STM32F7xx_HAL_Driver\Inc;..\..\libs\st_hal\CMSIS\Device\ST\STM32F7xx\Include;..\..\libs\st_hal\CMSIS\Include;..\..\libs\FreeRTOS\include;..\..\libs\FreeRTOS\CMSIS_RTOS;..\..\libs\FreeRTOS\portable\RVDS\ARM_CM7\r0p1;..\..\libs\fatfs;..\..\libs\fatfs\drivers;..\..\libs\fatfs\option</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -593,97 +593,97 @@
             <File>
               <FileName>esp_mem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_mem.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_mem.c</FilePath>
             </File>
             <File>
               <FileName>esp_buff.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_buff.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_buff.c</FilePath>
             </File>
             <File>
               <FileName>esp_pbuf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_pbuf.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_pbuf.c</FilePath>
             </File>
             <File>
               <FileName>esp_unicode.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_unicode.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_unicode.c</FilePath>
             </File>
             <File>
               <FileName>esp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp.c</FilePath>
             </File>
             <File>
               <FileName>esp_parser.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_parser.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_parser.c</FilePath>
             </File>
             <File>
               <FileName>esp_threads.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_threads.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_threads.c</FilePath>
             </File>
             <File>
               <FileName>esp_int.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_int.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_int.c</FilePath>
             </File>
             <File>
               <FileName>esp_input.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_input.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_input.c</FilePath>
             </File>
             <File>
               <FileName>esp_debug.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_debug.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_debug.c</FilePath>
             </File>
             <File>
               <FileName>esp_timeout.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_timeout.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_timeout.c</FilePath>
             </File>
             <File>
               <FileName>esp_sta.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_sta.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_sta.c</FilePath>
             </File>
             <File>
               <FileName>esp_ap.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_ap.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_ap.c</FilePath>
             </File>
             <File>
               <FileName>esp_conn.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_conn.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_conn.c</FilePath>
             </File>
             <File>
               <FileName>esp_sntp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_sntp.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_sntp.c</FilePath>
             </File>
             <File>
               <FileName>esp_ping.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_ping.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_ping.c</FilePath>
             </File>
             <File>
               <FileName>esp_hostname.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_hostname.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_hostname.c</FilePath>
             </File>
             <File>
               <FileName>esp_wps.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_wps.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_wps.c</FilePath>
             </File>
             <File>
               <FileName>esp_evt.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\esp\esp_evt.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\esp\esp_evt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -693,7 +693,7 @@
             <File>
               <FileName>esp_netconn.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\api\esp_netconn.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\api\esp_netconn.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -703,12 +703,12 @@
             <File>
               <FileName>esp_ll_stm32f769i_discovery.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\system\esp_ll_stm32f769i_discovery.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\system\esp_ll_stm32f769i_discovery.c</FilePath>
             </File>
             <File>
               <FileName>esp_sys_cmsis_os.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\system\esp_sys_cmsis_os.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\system\esp_sys_cmsis_os.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -718,17 +718,17 @@
             <File>
               <FileName>esp_http_server.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\apps\http_server\esp_http_server.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\apps\http_server\esp_http_server.c</FilePath>
             </File>
             <File>
               <FileName>esp_http_server_fs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\apps\http_server\esp_http_server_fs.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\apps\http_server\esp_http_server_fs.c</FilePath>
             </File>
             <File>
               <FileName>esp_http_server_fs_fat.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\apps\http_server\esp_http_server_fs_fat.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\apps\http_server\esp_http_server_fs_fat.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -738,7 +738,7 @@
             <File>
               <FileName>esp_mqtt_client.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\apps\mqtt\esp_mqtt_client.c</FilePath>
+              <FilePath>..\..\ESP_AT_Lib\src\apps\mqtt\esp_mqtt_client.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -478,7 +478,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp.c</PathWithFileName>
       <FilenameWithoutPath>esp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -490,7 +490,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_ap.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_ap.c</PathWithFileName>
       <FilenameWithoutPath>esp_ap.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -502,7 +502,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_buff.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_buff.c</PathWithFileName>
       <FilenameWithoutPath>esp_buff.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -514,7 +514,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_conn.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_conn.c</PathWithFileName>
       <FilenameWithoutPath>esp_conn.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -526,7 +526,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_cli.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_cli.c</PathWithFileName>
       <FilenameWithoutPath>esp_cli.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -538,7 +538,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_debug.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_debug.c</PathWithFileName>
       <FilenameWithoutPath>esp_debug.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -550,7 +550,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_evt.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_evt.c</PathWithFileName>
       <FilenameWithoutPath>esp_evt.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -562,7 +562,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_hostname.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_hostname.c</PathWithFileName>
       <FilenameWithoutPath>esp_hostname.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -574,7 +574,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_input.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_input.c</PathWithFileName>
       <FilenameWithoutPath>esp_input.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -586,7 +586,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_int.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_int.c</PathWithFileName>
       <FilenameWithoutPath>esp_int.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -598,7 +598,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_mem.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_mem.c</PathWithFileName>
       <FilenameWithoutPath>esp_mem.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -610,7 +610,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_parser.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_parser.c</PathWithFileName>
       <FilenameWithoutPath>esp_parser.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -622,7 +622,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_pbuf.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_pbuf.c</PathWithFileName>
       <FilenameWithoutPath>esp_pbuf.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -634,7 +634,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_ping.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_ping.c</PathWithFileName>
       <FilenameWithoutPath>esp_ping.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -646,7 +646,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_sntp.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_sntp.c</PathWithFileName>
       <FilenameWithoutPath>esp_sntp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -658,7 +658,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_sta.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_sta.c</PathWithFileName>
       <FilenameWithoutPath>esp_sta.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -670,7 +670,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_threads.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_threads.c</PathWithFileName>
       <FilenameWithoutPath>esp_threads.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -682,7 +682,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_timeout.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_timeout.c</PathWithFileName>
       <FilenameWithoutPath>esp_timeout.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -694,7 +694,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_unicode.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_unicode.c</PathWithFileName>
       <FilenameWithoutPath>esp_unicode.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -706,7 +706,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\esp\esp_wps.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\esp\esp_wps.c</PathWithFileName>
       <FilenameWithoutPath>esp_wps.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -726,7 +726,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\api\esp_netconn.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\api\esp_netconn.c</PathWithFileName>
       <FilenameWithoutPath>esp_netconn.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -746,7 +746,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\system\esp_sys_cmsis_os.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\system\esp_sys_cmsis_os.c</PathWithFileName>
       <FilenameWithoutPath>esp_sys_cmsis_os.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -758,7 +758,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\system\esp_ll_stm32l432kc_nucleo.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\system\esp_ll_stm32l432kc_nucleo.c</PathWithFileName>
       <FilenameWithoutPath>esp_ll_stm32l432kc_nucleo.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -814,7 +814,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\cli\cli.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\cli\cli.c</PathWithFileName>
       <FilenameWithoutPath>cli.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -826,7 +826,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\src\cli\cli_input.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\ESP_AT_Lib\src\cli\cli_input.c</PathWithFileName>
       <FilenameWithoutPath>cli_input.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
