@@ -66,11 +66,11 @@ mqtt_client_api_thread(void const* arg) {
         }
 
         printf("Sending 1\r\n");
-        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "test_data1", 10);
+        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "test_data1", 10, MQTT_QOS_AT_MOST_ONCE);
         printf("Sending 2\r\n");
-        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "test_data2", 10);
+        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "test_data2", 10, MQTT_QOS_AT_MOST_ONCE);
         printf("Sending 3\r\n");
-        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "test_data3", 10);
+        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "test_data3", 10, MQTT_QOS_AT_MOST_ONCE);
 
         while (1) {
             /* Receive API data */
