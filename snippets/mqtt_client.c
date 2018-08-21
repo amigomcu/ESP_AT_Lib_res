@@ -18,7 +18,7 @@
 /**
  * \brief           MQTT client structure
  */
-static mqtt_client_t*
+static mqtt_client_p
 mqtt_client;
 
 /**
@@ -30,7 +30,7 @@ mqtt_client_id[13];
 /**
  * \brief           Connection information for MQTT CONNECT packet
  */
-const mqtt_client_info_t
+static const mqtt_client_info_t
 mqtt_client_info = {
     .id = mqtt_client_id,                       /* The only required field for connection! */
     
@@ -39,8 +39,8 @@ mqtt_client_info = {
     // .pass = "test_password",
 };
 
-static void mqtt_cb(mqtt_client_t* client, mqtt_evt_t* evt);
-static void example_do_connect(mqtt_client_t* client);
+static void mqtt_cb(mqtt_client_p client, mqtt_evt_t* evt);
+static void example_do_connect(mqtt_client_p client);
 static uint32_t retries = 0;
 
 /**
@@ -103,7 +103,7 @@ mqtt_client_thread(void const* arg) {
 void
 mqtt_timeout_cb(void* arg) {
     static uint32_t num = 10;
-    mqtt_client_t* client = arg;
+    mqtt_client_p client = arg;
     espr_t res;
 
     static char tx_data[20];
@@ -114,7 +114,7 @@ mqtt_timeout_cb(void* arg) {
             printf("Publishing %d...\r\n", (int)num);
             num++;
         } else {
-            printf("Cannot publish...: %d, client->state: %d\r\n", (int)res, (int)client->conn_state);
+            printf("Cannot publish...: %d\r\n", (int)res);
         }
     }
     esp_timeout_add(10000, mqtt_timeout_cb, client);
@@ -126,7 +126,7 @@ mqtt_timeout_cb(void* arg) {
  * \param[in]       evt: Event type and data
  */
 static void
-mqtt_cb(mqtt_client_t* client, mqtt_evt_t* evt) {
+mqtt_cb(mqtt_client_p client, mqtt_evt_t* evt) {
     switch (mqtt_client_evt_get_type(client, evt)) {
         /*
          * Connect event
@@ -181,10 +181,10 @@ mqtt_cb(mqtt_client_t* client, mqtt_evt_t* evt) {
         }
         
         /* Message published event occurred */
-        case MQTT_EVT_PUBLISHED: {              /* MQTT publish was successful */
+        case MQTT_EVT_PUBLISH: {                /* MQTT publish was successful */
             uint32_t val = (uint32_t)mqtt_client_evt_published_get_argument(client, evt);   /* Get user argument, which is in fact our custom number */
             
-            printf("Publish was successful, user argument on message was: %d\r\n", (int)val);
+            printf("Publish event, user argument on message was: %d\r\n", (int)val);
             break;
         }
         
@@ -219,7 +219,7 @@ mqtt_cb(mqtt_client_t* client, mqtt_evt_t* evt) {
 
 /** Make a connection to MQTT server in non-blocking mode */
 static void
-example_do_connect(mqtt_client_t* client) {
+example_do_connect(mqtt_client_p client) {
     if (client == NULL) {
         return;
     }
