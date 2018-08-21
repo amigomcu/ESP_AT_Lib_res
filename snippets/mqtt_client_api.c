@@ -61,6 +61,8 @@ mqtt_client_api_thread(void const* arg) {
         /* Subscribe to topic */
         if (mqtt_client_api_subscribe(client, "esp8266_mqtt_topic", MQTT_QOS_AT_LEAST_ONCE) == espOK) {
             printf("Subscribed to esp8266_mqtt_topic\r\n");
+        } else {
+            printf("Problem subscribing to topic!\r\n");
         }
 
         printf("Sending 1\r\n");
@@ -76,6 +78,7 @@ mqtt_client_api_thread(void const* arg) {
             if (res == espOK) {
                 if (buf != NULL) {
                     printf("Publish received!\r\n");
+                    printf("Topic: %s, payload: %s\r\n", buf->topic, buf->payload);
                     mqtt_client_api_buf_free(buf);
                     buf = NULL;
                 }
