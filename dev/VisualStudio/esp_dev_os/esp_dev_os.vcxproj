@@ -144,8 +144,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\mqtt\esp_mqtt_client_api.c" />
     <ClCompile Include="..\..\..\snippets\http_server.c" />
     <ClCompile Include="..\..\..\snippets\mqtt_client.c" />
+    <ClCompile Include="..\..\..\snippets\mqtt_client_api.c" />
     <ClCompile Include="..\..\..\snippets\netconn_client.c" />
     <ClCompile Include="..\..\..\snippets\netconn_server.c" />
     <ClCompile Include="..\..\..\snippets\netconn_server_1thread.c" />

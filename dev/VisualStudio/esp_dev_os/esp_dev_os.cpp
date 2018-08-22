@@ -7,6 +7,7 @@
 #include "esp/apps/esp_http_server.h"
 
 #include "mqtt_client.h"
+#include "mqtt_client_api.h"
 #include "http_server.h"
 #include "station_manager.h"
 #include "netconn_client.h"
@@ -42,20 +43,11 @@ main() {
  */
 static void
 main_thread(void* arg) {
-    esp_netconn_p c1;
-    espr_t res;
-    esp_pbuf_p p;
-    esp_ip_t ip;
 
     /*
      * Init ESP library
      */
     esp_init(esp_evt, 1);
-    
-    /*
-     * Start MQTT thread
-     */
-    //esp_sys_thread_create(NULL, "MQTT", (esp_sys_thread_fn)mqtt_thread, NULL, 512, ESP_SYS_THREAD_PRIO);
 
     /*
      * Try to connect to preferred access point
@@ -82,8 +74,24 @@ main_thread(void* arg) {
     /* Start server on port 80 */
     //http_server_start();
     //esp_sys_thread_create(NULL, "netconn_server", (esp_sys_thread_fn)netconn_server_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
-    esp_sys_thread_create(NULL, "netconn_server_single", (esp_sys_thread_fn)netconn_server_1thread_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
-    esp_sys_thread_create(NULL, "mqtt_client", (esp_sys_thread_fn)mqtt_client_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
+    //esp_sys_thread_create(NULL, "netconn_server_single", (esp_sys_thread_fn)netconn_server_1thread_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
+    //esp_sys_thread_create(NULL, "mqtt_client", (esp_sys_thread_fn)mqtt_client_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
+    esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
+
+    while (1) {
+        char ch = getc(stdin);
+        switch (ch) {
+            case 'Q': {
+                esp_sta_quit(1);
+                break;
+            }
+            case 'J': {
+                connect_to_preferred_access_point(1);
+                break;
+            }
+            default: break;
+        }
+    }
 
     while (0) {
         esp_netconn_p nc;

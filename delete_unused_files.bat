@@ -12,3 +12,4 @@ del /s *.elf
 del /s *.list
 del /s *.pbi
 del /s *.xcl
+del /s *.log
