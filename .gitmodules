@@ -1,3 +1,8 @@
+[submodule "ESP_AT_Lib"]
+	path = ESP_AT_Lib
+	url = https://github.com/MaJerle/ESP_AT_Lib
+	branch = master
+    
 [submodule "libs"]
 	path = libs
 	url = https://github.com/MaJerle/Embedded_libs
