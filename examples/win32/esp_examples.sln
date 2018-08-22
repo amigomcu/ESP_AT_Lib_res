@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server RTOS", "server_rtos\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Access  point RTOS", "access_point_rtos\access_point_rtos.vcxproj", "{85C74DA6-AF48-4E89-BDAD-4F00E59BAA05}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MQTT Client API RTOS", "mqtt_client_api_rtos\mqtt_client_api_rtos.vcxproj", "{DAB3F107-6A56-483E-9B66-8C9918361AA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -101,6 +103,14 @@ Global
 		{85C74DA6-AF48-4E89-BDAD-4F00E59BAA05}.Release|x64.Build.0 = Release|x64
 		{85C74DA6-AF48-4E89-BDAD-4F00E59BAA05}.Release|x86.ActiveCfg = Release|Win32
 		{85C74DA6-AF48-4E89-BDAD-4F00E59BAA05}.Release|x86.Build.0 = Release|Win32
+		{DAB3F107-6A56-483E-9B66-8C9918361AA2}.Debug|x64.ActiveCfg = Debug|x64
+		{DAB3F107-6A56-483E-9B66-8C9918361AA2}.Debug|x64.Build.0 = Debug|x64
+		{DAB3F107-6A56-483E-9B66-8C9918361AA2}.Debug|x86.ActiveCfg = Debug|Win32
+		{DAB3F107-6A56-483E-9B66-8C9918361AA2}.Debug|x86.Build.0 = Debug|Win32
+		{DAB3F107-6A56-483E-9B66-8C9918361AA2}.Release|x64.ActiveCfg = Release|x64
+		{DAB3F107-6A56-483E-9B66-8C9918361AA2}.Release|x64.Build.0 = Release|x64
+		{DAB3F107-6A56-483E-9B66-8C9918361AA2}.Release|x86.ActiveCfg = Release|Win32
+		{DAB3F107-6A56-483E-9B66-8C9918361AA2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
