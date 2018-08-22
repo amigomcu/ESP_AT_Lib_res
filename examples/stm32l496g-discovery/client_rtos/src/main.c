@@ -85,9 +85,7 @@ init_thread(void const* arg) {
      */
     connect_to_preferred_access_point(1);
 
-    /*
-     * Start a new connection as client in non-blocking mode
-     */
+    /* Start a new connection as client in non-blocking mode */
     if ((res = esp_conn_start(NULL, ESP_CONN_TYPE_TCP, "example.com", 80, NULL, conn_callback_func, 0)) == espOK) {
         printf("Connection to example.com started...\r\n");
     } else {
