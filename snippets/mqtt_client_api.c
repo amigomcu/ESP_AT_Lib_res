@@ -42,38 +42,44 @@ mqtt_client_api_thread(void const* arg) {
     mqtt_client_api_buf_p buf;
     espr_t res;
 
+    /* Create new MQTT API */
     client = mqtt_client_api_new(256, 128);
     if (client == NULL) {
         goto terminate;
     }
+
     while (1) {
         /* Make a connection */
-        printf("Joining mosquitto server\r\n");
+        printf("Joining MQTT server\r\n");
+
+        /* Try to join */
         conn_status = mqtt_client_api_connect(client, "test.mosquitto.org", 1883, &mqtt_client_info);
         if (conn_status == MQTT_CONN_STATUS_ACCEPTED) {
             printf("Connected and accepted!\r\n");
+            printf("Client is ready to subscribe and publish to new messages\r\n");
         } else {
             printf("Connect API response: %d\r\n", (int)conn_status);
             esp_delay(5000);
             continue;
         }
 
-        /* Subscribe to topic */
+        /* Subscribe to topics */
         if (mqtt_client_api_subscribe(client, "esp8266_mqtt_topic", MQTT_QOS_AT_LEAST_ONCE) == espOK) {
             printf("Subscribed to esp8266_mqtt_topic\r\n");
         } else {
             printf("Problem subscribing to topic!\r\n");
         }
 
-        printf("Sending 1\r\n");
-        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "test_data1", 10, MQTT_QOS_AT_MOST_ONCE);
-        printf("Sending 2\r\n");
-        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "test_data2", 10, MQTT_QOS_AT_MOST_ONCE);
-        printf("Sending 3\r\n");
-        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "test_data3", 10, MQTT_QOS_AT_MOST_ONCE);
+        /* Publish data to some topic */
+        printf("Publishing first entry\r\n");
+        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "first_entry", 11, MQTT_QOS_AT_MOST_ONCE);
+        printf("Publishing second entry\r\n");
+        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "second_entry", 12, MQTT_QOS_AT_MOST_ONCE);
+        printf("Publishing third entry\r\n");
+        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "third_entry", 11, MQTT_QOS_AT_MOST_ONCE);
 
         while (1) {
-            /* Receive API data */
+            /* Receive MQTT packet with 1000ms timeout */
             res = mqtt_client_api_receive(client, &buf, 1000);
             if (res == espOK) {
                 if (buf != NULL) {
@@ -86,11 +92,14 @@ mqtt_client_api_thread(void const* arg) {
                 printf("MQTT connection closed!\r\n");
                 break;
             } else if (res == espTIMEOUT) {
-                //printf("Timeout\r\n");
+                /* Receive timeout */
+                /* printf("Timeout\r\n"); */
             }
         }
     }
+
 terminate: 
-    printf("MQTT terminate\r\n");
+    mqtt_client_api_delete(client);
+    printf("MQTT client thread terminate\r\n");
     esp_sys_thread_terminate(NULL);
 }
