@@ -1,7 +1,14 @@
-# ESP AT LIB resources, examples and development
+# ESP AT Lib resources, examples and development
 
-This is official repository with all examples, development and resource for main
-repository, located at https://github.com/MaJerle/ESP_AT_Lib
+## Library
+
+Source of library is available as separate Github repository: https://github.com/MaJerle/ESP_AT_Lib
+
+## Documentation and project page
+
+Project page:  http://majerle.eu/projects/esp-at-library-advanced-esp-at-commands-parser
+
+Documentation: http://majerle.eu/documentation/esp_at/html/index.html
 
 ## How to use repository
 
