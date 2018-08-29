@@ -72,11 +72,11 @@ mqtt_client_api_thread(void const* arg) {
 
         /* Publish data to some topic */
         printf("Publishing first entry\r\n");
-        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "first_entry", 11, MQTT_QOS_AT_MOST_ONCE);
+        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "first_entry", 11, MQTT_QOS_AT_MOST_ONCE, 0);
         printf("Publishing second entry\r\n");
-        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "second_entry", 12, MQTT_QOS_AT_MOST_ONCE);
+        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "second_entry", 12, MQTT_QOS_AT_MOST_ONCE, 0);
         printf("Publishing third entry\r\n");
-        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "third_entry", 11, MQTT_QOS_AT_MOST_ONCE);
+        mqtt_client_api_publish(client, "esp8266_mqtt_topic", "third_entry", 11, MQTT_QOS_AT_MOST_ONCE, 0);
 
         while (1) {
             /* Receive MQTT packet with 1000ms timeout */

@@ -38,7 +38,6 @@ size_t apf;
  */
 espr_t
 connect_to_preferred_access_point(uint8_t unlimited) {
-    size_t i, j;
     espr_t eres;
     uint8_t tried;
 
@@ -55,15 +54,13 @@ connect_to_preferred_access_point(uint8_t unlimited) {
         if ((eres = esp_sta_list_ap(NULL, aps, ESP_ARRAYSIZE(aps), &apf, 1)) == espOK) {
             tried = 0;
             /* Print all access points found by ESP */
-            for (i = 0; i < apf; i++) {
+            for (size_t i = 0; i < apf; i++) {
                 printf("AP found: %s, CH: %d, RSSI: %d\r\n", aps[i].ssid, aps[i].ch, aps[i].rssi);
             }
 
-            /*
-             * Process array of preferred access points with array of found points
-             */
-            for (j = 0; j < ESP_ARRAYSIZE(ap_list); j++) {
-                for (i = 0; i < apf; i++) {
+            /* Process array of preferred access points with array of found points */
+            for (size_t j = 0; j < ESP_ARRAYSIZE(ap_list); j++) {
+                for (size_t i = 0; i < apf; i++) {
                     if (!strcmp(aps[i].ssid, ap_list[j].ssid)) {
                         tried = 1;
                         printf("Connecting to \"%s\" network...\r\n", ap_list[j].ssid);
@@ -115,7 +112,6 @@ scan_access_points(void) {
 
 static void
 join_to_next_ap(void) {
-    size_t i;
     if (esp_sta_is_joined()) {
         last_index = 0;
         return;
@@ -128,7 +124,7 @@ join_to_next_ap(void) {
 
     /* Continue with other access points */
     for (; last_index < apf; last_index++) {
-        for (i = 0; i < ESP_ARRAYSIZE(ap_list); i++) {
+        for (size_t i = 0; i < ESP_ARRAYSIZE(ap_list); i++) {
             if (!strcmp(aps[last_index].ssid, ap_list[i].ssid)) {
                 printf("Start connection to %s access point\r\n", aps[last_index].ssid);
                 if (esp_sta_join(ap_list[i].ssid, ap_list[i].pass, NULL, 0, 0) == espOK) {
