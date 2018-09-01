@@ -57,7 +57,7 @@ main_thread(void* arg) {
      */
     //start_access_point_scan_and_connect_procedure();
     //esp_sys_thread_terminate(NULL);
-    connect_to_preferred_access_point(1);
+    //connect_to_preferred_access_point(1);
 
     /*
      * Check if device has set IP address
@@ -79,6 +79,11 @@ main_thread(void* arg) {
     esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
 
     while (1) {
+        if (!esp_sta_is_joined()) {
+            esp_sta_join("TilenM_ST", "its private", NULL, 1, 1);
+        }
+        esp_delay(1000);
+        continue;
         char ch = getc(stdin);
         switch (ch) {
             case 'Q': {
