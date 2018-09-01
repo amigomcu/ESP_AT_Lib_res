@@ -6,8 +6,8 @@ uint8_t initialized = 0;
  * \param[in]       len: Number of bytes to send
  * \return          Number of bytes sent
  */
-static uint16_t
-send_data(const void* data, uint16_t len) {
+static size_t
+send_data(const void* data, size_t len) {
     return len;
 }
 
