@@ -231,7 +231,7 @@ int __io_putchar(int ch) {
 #else
 int fputc(int ch, FILE* fil) {
 #endif
-    LL_USART_TransmitData8(USART6, (uint8_t)ch);/* Transmit data */
-    while (!LL_USART_IsActiveFlag_TXE(USART6)); /* Wait until done */
+    LL_USART_TransmitData8(USART6, (uint8_t)ch);
+    while (!LL_USART_IsActiveFlag_TXE(USART6)) {}
     return ch;
 }
