@@ -57,7 +57,7 @@ main_thread(void* arg) {
      */
     //start_access_point_scan_and_connect_procedure();
     //esp_sys_thread_terminate(NULL);
-    //connect_to_preferred_access_point(1);
+    connect_to_preferred_access_point(1);
 
     /*
      * Check if device has set IP address
@@ -71,16 +71,18 @@ main_thread(void* arg) {
         printf("Device IP: %d.%d.%d.%d\r\n", ip.ip[0], ip.ip[1], ip.ip[2], ip.ip[3]);
     }
 
+    esp_conn_start(NULL, ESP_CONN_TYPE_UDP, "krneki_123.com", 80, NULL, esp_conn_evt, 1);
+
     /* Start server on port 80 */
     //http_server_start();
     //esp_sys_thread_create(NULL, "netconn_server", (esp_sys_thread_fn)netconn_server_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "netconn_server_single", (esp_sys_thread_fn)netconn_server_1thread_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "mqtt_client", (esp_sys_thread_fn)mqtt_client_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
-    esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
+    //esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
 
     while (1) {
         if (!esp_sta_is_joined()) {
-            esp_sta_join("TilenM_ST", "its private", NULL, 1, 1);
+            esp_sta_join("Majerle AMIS", "majerle_internet_private", NULL, 1, 1);
         }
         esp_delay(1000);
         continue;
@@ -243,6 +245,10 @@ esp_conn_evt(esp_evt_t* evt) {
         case ESP_EVT_CONN_CLOSED: {
             printf("Connection closed!\r\n");
             esp_conn_start(NULL, ESP_CONN_TYPE_TCP, "majerle.eu", 80, NULL, esp_conn_evt, 0);
+            break;
+        }
+        case ESP_EVT_CONN_ERROR: {
+            printf("Connection error!\r\n");
             break;
         }
     }
