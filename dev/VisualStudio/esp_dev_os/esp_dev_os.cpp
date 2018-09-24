@@ -71,7 +71,8 @@ main_thread(void* arg) {
         printf("Device IP: %d.%d.%d.%d\r\n", ip.ip[0], ip.ip[1], ip.ip[2], ip.ip[3]);
     }
 
-    esp_conn_start(NULL, ESP_CONN_TYPE_UDP, "krneki_123.com", 80, NULL, esp_conn_evt, 1);
+    esp_conn_set_ssl_buffersize(4096, 1);
+    esp_conn_start(NULL, ESP_CONN_TYPE_TCP, "majerle.eu", 443, NULL, esp_conn_evt, 0);
 
     /* Start server on port 80 */
     //http_server_start();
@@ -244,7 +245,7 @@ esp_conn_evt(esp_evt_t* evt) {
         }
         case ESP_EVT_CONN_CLOSED: {
             printf("Connection closed!\r\n");
-            esp_conn_start(NULL, ESP_CONN_TYPE_TCP, "majerle.eu", 80, NULL, esp_conn_evt, 0);
+            //esp_conn_start(NULL, ESP_CONN_TYPE_TCP, "majerle.eu", 80, NULL, esp_conn_evt, 0);
             break;
         }
         case ESP_EVT_CONN_ERROR: {
