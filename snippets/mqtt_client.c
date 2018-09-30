@@ -182,7 +182,7 @@ mqtt_cb(esp_mqtt_client_p client, esp_mqtt_evt_t* evt) {
         
         /* Message published event occurred */
         case ESP_MQTT_EVT_PUBLISH: {
-            uint32_t val = (uint32_t)esp_mqtt_client_evt_published_get_argument(client, evt);   /* Get user argument, which is in fact our custom number */
+            uint32_t val = (uint32_t)esp_mqtt_client_evt_publish_get_argument(client, evt); /* Get user argument, which is in fact our custom number */
             
             printf("Publish event, user argument on message was: %d\r\n", (int)val);
             break;
