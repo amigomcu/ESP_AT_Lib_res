@@ -16,7 +16,7 @@ esp_sys_sem_create(esp_sys_sem_t* p, uint8_t cnt) {
     if (*p && !cnt) {                           /* We have valid entry */
         osSemaphoreWait(*p, 0);                 /* Lock semaphore immediatelly */
     }
-    return !!*p;
+    return *p != NULL;
 }
 
 /*
@@ -62,7 +62,7 @@ esp_sys_sem_release(esp_sys_sem_t* p) {
  */
 uint8_t
 esp_sys_sem_isvalid(esp_sys_sem_t* p) {
-    return !!*p;                                /* Check if valid */
+    return *p != NULL;                          /* Check if valid */
 }
 
 /*

@@ -13,7 +13,7 @@ uint8_t
 esp_sys_thread_create(esp_sys_thread_t* t, const char* name, void (*thread_func)(void *), void* const arg, size_t stack_size, esp_sys_thread_prio_t prio) {
     const osThreadDef_t thread_def = {(char *)name, (os_pthread)thread_func, (osPriority)prio, 0, stack_size};  /* Create thread description */
     *t = osThreadCreate(&thread_def, arg);      /* Create thread */
-    return !!*t;
+    return *t != NULL;
 }
 
 /*

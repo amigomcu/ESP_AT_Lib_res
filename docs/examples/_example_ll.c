@@ -14,11 +14,10 @@ send_data(const void* data, size_t len) {
 /*
  * \brief           Core callback function which must be implemented by user
  * \param[in]       ll: Low-Level structure
- * \param[in]       baudrate: Baudrate for AT port
  * \return          espOK on success, member of \ref espr_t otherwise
  */
 espr_t
-esp_ll_init(esp_ll_t* ll, uint32_t baudrate) {
+esp_ll_init(esp_ll_t* ll) {
     /*
      * In step 1, define memory array used for memory allocator
      * and send it to upper layer.
@@ -52,7 +51,9 @@ esp_ll_init(esp_ll_t* ll, uint32_t baudrate) {
      * Since user may change baudrate in upper layer,
      * this function may be called multiple times
      */
-    configure_uart(baudrate);
+    configure_uart(ll->uart.baudrate);
     
     initialized = 1;
+
+    return espOK;
 }

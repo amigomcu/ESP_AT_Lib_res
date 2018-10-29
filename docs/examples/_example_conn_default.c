@@ -18,9 +18,7 @@ conn_evt(esp_evt_t* evt) {
     }
     
     switch (esp_evt_get_type(evt)) {
-        /*
-         * A new connection just became active
-         */
+        /* A new connection just became active */
         case ESP_EVT_CONN_ACTIVE: {
             printf("Connection active!\r\n");
             
@@ -32,9 +30,7 @@ conn_evt(esp_evt_t* evt) {
             break;
         }
         
-        /*
-         * Connection closed event
-         */
+        /* Connection closed event */
         case ESP_EVT_CONN_CLOSED: {
             printf("Connection closed!\r\n");
             if (evt->evt.conn_active_closed.forced) {   /* Was it forced by user? */
@@ -44,9 +40,7 @@ conn_evt(esp_evt_t* evt) {
             }
         }
         
-        /*
-         * Data received on connection
-         */
+        /* Data received on connection */
         case ESP_EVT_CONN_DATA_RECV: {
             esp_pbuf_p pbuf = cb->evt.conn_data_recv.buff;   /* Get data buffer */
             

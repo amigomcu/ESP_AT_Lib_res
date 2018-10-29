@@ -9,7 +9,7 @@ uint8_t
 esp_sys_mbox_create(esp_sys_mbox_t* b, size_t size) {
     osMessageQDef(MBOX, size, void *);          /* Define message box */
     *b = osMessageCreate(osMessageQ(MBOX), NULL);   /* Create message box */
-    return !!*b;
+    return *b != NULL;
 }
 
 /*
@@ -99,7 +99,7 @@ esp_sys_mbox_getnow(esp_sys_mbox_t* b, void** m) {
  */
 uint8_t
 esp_sys_mbox_isvalid(esp_sys_mbox_t* b) {
-    return !!*b;                                /* Return status if message box is valid */
+    return *b != NULL;                          /* Return status if message box is valid */
 }
 
 /*

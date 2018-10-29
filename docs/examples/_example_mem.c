@@ -3,9 +3,7 @@
  * Check ESP_LL part of library for more info
  */
  
-/*
- * We can simply create a big array variable which will be linked to internal memory by linker 
- */
+/* We can simply create a big array variable which will be linked to internal memory by linker */
 uint8_t mem_int[0x1000];
 
 /*
@@ -17,7 +15,5 @@ esp_mem_region_t mem_regions[] = {
     { (void *)0xC0000000, 0x8000 },             /* External heap memory is located on 0xC0000000 and has 0x8000 bytes of memory */ 
 };
 
-/*
- * On startup, user must call function to assign memory regions
- */
+/* On startup, user must call function to assign memory regions */
 esp_mem_assignmemory(mem_regions, ESP_ARRAYSIZE(mem_regions));

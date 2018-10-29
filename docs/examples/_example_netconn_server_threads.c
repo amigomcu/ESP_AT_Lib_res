@@ -18,9 +18,7 @@ server_thread(void const* arg) {
     
     if (server != NULL) {
         
-        /*
-         * Bind network connection to port 80
-         */
+        /* Bind network connection to port 80 */
         res = esp_netconn_bind(server, 80);
         if (res == espOK) {
             
@@ -126,9 +124,7 @@ server_process_client_thread(void const* arg) {
          */
         res = esp_netconn_write(client, your_data, your_data_len);
         
-        /*
-         * When done sending everything, close client connection
-         */
+        /* When done sending everything, close client connection */
         esp_netconn_close(client);
     }
     
@@ -138,8 +134,6 @@ server_process_client_thread(void const* arg) {
      */
     esp_netconn_delete(client);
 
-    /*
-     * Terminate self
-     */
+    /* Terminate self */
     esp_sys_thread_terminate(NULL);
 }

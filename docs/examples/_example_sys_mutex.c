@@ -9,7 +9,7 @@ uint8_t
 esp_sys_mutex_create(esp_sys_mutex_t* p) {
     osMutexDef(MUT);                            /* Define a mutex */
     *p = osRecursiveMutexCreate(osMutex(MUT));  /* Create recursive mutex */
-    return !!*p;                                /* Return status */
+    return *p != NULL;
 }
 
 /*
@@ -53,7 +53,7 @@ esp_sys_mutex_unlock(esp_sys_mutex_t* p) {
  */
 uint8_t
 esp_sys_mutex_isvalid(esp_sys_mutex_t* p) {
-    return !!*p;                                /* Check if mutex is valid */
+    return *p != NULL;                          /* Check if mutex is valid */
 }
 
 /*

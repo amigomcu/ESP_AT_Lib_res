@@ -96,8 +96,6 @@ client_thread(void const* arg) {
         }
     }
     
-    /*
-     * Last step is to delete connection object from memory
-     */
+    /* Last step is to delete connection object from memory */
     esp_netconn_delete(client);
 }

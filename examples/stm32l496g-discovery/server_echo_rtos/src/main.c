@@ -143,9 +143,14 @@ server_callback_func(esp_evt_t* evt) {
             }
             break;
         }
-        case ESP_EVT_CONN_DATA_SEND: {           /* Data successfully sent to remote side */
-            
-            printf("Data successfully sent to client\r\n");
+        case ESP_EVT_CONN_DATA_SEND: {           /* Data send event */
+            espr_t res = esp_evt_conn_data_send_get_result(evt);
+            if (res == espOK) {
+                printf("Data sent successfully to client\r\n");
+            } else {
+                printf("Error while sending data!\r\n");
+            }
+            break;
             break;
         }
         default: break;
