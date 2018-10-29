@@ -143,7 +143,8 @@ server_callback_func(esp_evt_t* evt) {
             }
             break;
         }
-        case ESP_EVT_CONN_DATA_SENT: {           /* Data successfully sent to remote side */
+        case ESP_EVT_CONN_DATA_SEND: {           /* Data successfully sent to remote side */
+            
             printf("Data successfully sent to client\r\n");
             break;
         }

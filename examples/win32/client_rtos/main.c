@@ -26,7 +26,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  *
- * This file is part of ESP-AT.
+ * This file is part of ESP-AT library.
  *
  * Before you start using WIN32 implementation with USB and VCP,
  * check esp_ll_win32.c implementation and choose your COM port!
@@ -115,14 +115,16 @@ esp_conn_callback_func(esp_evt_t* evt) {
             esp_conn_send(conn, request_data, sizeof(request_data) - 1, NULL, 0);
             break;
         }
-        case ESP_EVT_CONN_DATA_SENT: {          /* Data successfully sent */
-            size_t len = esp_evt_conn_data_sent_get_length(evt);
-            printf("Successfully sent %d bytes on connection %d\r\n", (int)len, (int)esp_conn_getnum(conn));
-            break;
-        }
-        case ESP_EVT_CONN_DATA_SEND_ERR: {      /* Error trying to send data on connection */
-            size_t len = esp_evt_conn_data_send_err_get_length(evt);
-            printf("Error trying to send data on connection %d\r\n", (int)esp_conn_getnum(conn));
+        case ESP_EVT_CONN_DATA_SEND: {          /* Data send event */
+            espr_t res = esp_evt_conn_data_send_get_result(evt);
+            if (res == espOK) {
+                size_t len = esp_evt_conn_data_send_get_length(evt);
+                printf("Successfully sent %d bytes on connection %d\r\n",
+                    (int)len, (int)esp_conn_getnum(conn));
+            } else {
+                printf("Error trying to send data on connection %d\r\n",
+                    (int)esp_conn_getnum(conn));
+            }
             break;
         }
         case ESP_EVT_CONN_DATA_RECV: {          /* Connection data received */

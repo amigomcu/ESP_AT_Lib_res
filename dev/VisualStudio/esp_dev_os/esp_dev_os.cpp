@@ -229,8 +229,13 @@ esp_conn_evt(esp_evt_t* evt) {
             esp_conn_send(esp_evt_conn_active_get_conn(evt), data, sizeof(data) - 1, NULL, 0);
             break;
         }
-        case ESP_EVT_CONN_DATA_SENT: {
-            printf("Connection data sent!\r\n");
+        case ESP_EVT_CONN_DATA_SEND: {
+            espr_t res = esp_evt_conn_data_send_get_result(evt);
+            if (res == espOK) {
+                printf("Connection data sent!\r\n");
+            } else {
+                printf("Connect data send error!\r\n");
+            }
             break;
         }
         case ESP_EVT_CONN_DATA_RECV: {

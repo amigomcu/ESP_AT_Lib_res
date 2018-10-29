@@ -157,7 +157,9 @@
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\http_server\esp_http_server.c" />
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\http_server\esp_http_server_fs.c" />
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\http_server\esp_http_server_fs_win32.c" />
-    <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\mqtt\esp_mqtt_client.c" />
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\mqtt\esp_mqtt_client.c">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+    </ClCompile>
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp.c" />
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_ap.c" />
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_buff.c" />

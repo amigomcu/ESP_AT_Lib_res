@@ -139,8 +139,13 @@ conn_callback_func(esp_evt_t* evt) {
             }
             break;
         }
-        case ESP_EVT_CONN_DATA_SENT: {          /* Data successfully sent to remote side */
-            printf("Data sent successfully...waiting to receive data from remote side...\r\n");
+        case ESP_EVT_CONN_DATA_SEND: {          /* Data send event */
+            espr_t res = esp_evt_conn_data_send_get_result(evt);
+            if (res == espOK) {
+                printf("Data sent successfully...waiting to receive data from remote side...\r\n");
+            } else {
+                printf("Error while sending data!\r\n");
+            }
             break;
         }
         case ESP_EVT_CONN_DATA_RECV: {          /* Data received from remote side */
