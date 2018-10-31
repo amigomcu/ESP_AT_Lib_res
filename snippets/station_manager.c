@@ -168,7 +168,7 @@ access_points_cb(esp_evt_t* evt) {
             break;
         }
         case ESP_EVT_STA_JOIN_AP: {
-            espr_t status = esp_evt_sta_join_ap_get_status(evt);
+            espr_t status = esp_evt_sta_join_ap_get_result(evt);
             if (status != espOK) {
                 printf("Join NOT OK.\r\n");
                 join_to_next_ap();
