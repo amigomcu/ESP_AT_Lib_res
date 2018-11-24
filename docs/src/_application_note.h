@@ -2,13 +2,115 @@
  * \page            page_appnote Application note
  * \tableofcontents
  *
- * This article shows how ESP AT lib works to get understanding what is happening under the hood.
+ * Application note and how to start
  *
- * \note            Currently, only OS mode is allowed.
+ * \section         sect_clone_get_started Clone repository and getting started
+ *
+ * Library development is fully hosted on Github and there is no future plans to move to any other platform.
+ *
+ * There are `2` repositories
+ *
+ *	- <a href="https://github.com/MaJerle/ESP_AT_Lib"><b>ESP_AT_Lib</b></a>: Source code of library itself.
+ *	    - Repository is required when developing final project
+ *
+ *	- <a href="https://github.com/MaJerle/ESP_AT_Lib_res"><b>ESP_AT_Lib_res</b></a>: Resources, development code,
+ *		documentation sources, examples, code snippets, etc.
+ *      - This repository uses `ESP_AT_Lib` repository as `submodule`
+ *	    - Repository is used to evaluate library using prepared examples
+ *
+ * \subsection      subsect_clone_res Clone resources repository with examples
+ *
+ * Easiest way to test the library is to clone resources repository.
+ *
+ *  - Download and install `git` if not already
+ *  - Open console and navigate to path in the system to clone repository to. Use command `cd your_path`
+ *  - Run `git clone https://github.com/MaJerle/ESP_AT_Lib_res` command to clone repository
+ *  - Enter into newly cloned folder using `cd ESP_AT_Lib_res`. Now we are inside working git directory
+ *  - Run command `git submodule update --init --recursive` to download and update all submodules
+ *  - Navigate to `examples` directory and run favorite example
+ *
+ * \subsection      subsect_clone_lib Clone library only
+ *
+ * If you are already familiar with library and you wish to include it in existing project, easiest way is to clone library repository only.
+ *
+ *  - Download and install `git` if not already
+ *  - Open console and navigate to path in the system to clone repository to. Use command `cd your_path`
+ *  - Run `git clone https://github.com/MaJerle/ESP_AT_Lib` command to clone repository
+ *
+ * \section         sect_project_examples Project examples
+ *
+ * \note            Examples are part of `ESP_AT_Lib_res` repository. Refer to \ref subsect_clone_res
+ *
+ * Several examples are available to show application use cases. These are split and can be tested on different systems.
+ *
+ * \subsection      subsect_project_examples_win32 WIN32
+ *
+ * Library is developed under WIN32 system. That is, all examples are first developed and tested under WIN32, later ported to embedded application.
+ * Examples come with <b>Visual Studio</b> project. You may open project and directly run the example from there.
+ *
+ * \note            It may happen that Visual Studio sets different configuration on first project load and this may lead to wrong build and possible errors.
+ *                  Active configuration must be `Debug` and `Win32 or x86`. Default active build can be set in project settings.
+ *
+ * \par             NodeMCU development board
+ *
+ * For development purposes, `NodeMCU v3` board is used with virtual COM port support to translate USB communication to UART required for ESP8266.
+ *
+ * \warning         Some NodeMCU boards have `CH340 USB->UART` transceiver where I found problems with communication due to data loss between ESP and PC even at `115200` bauds.
+ *                  Try to find NodeMCU with something else than CH340.
+ *
+ * \par             System functions for WIN32
+ *
+ * Required system functions are based on "windows.h" file, available on windows operating system. Natively, there is support for:
+ * 
+ *  - Timing functions
+ *  - Semaphores
+ *  - Mutexes
+ *  - Threads
+ *
+ * The last part are message queues which are not implemented in Windows OS.
+ * Message queues were developed with help of semaphores and dynamic memory allocatations.
+ * System port for WIN32 is available in `src/system/esp_sys_win32.c` file.
+ *
+ * \par             Low-level communication between NodeMCU and WIN32
+ *
+ * Communication with NodeMCU hardware is using virtual files for COM ports.
+ * Implementation of low-level part (together with memory allocation for library) is available in `src/system/esp_ll_win32.c` file.
+ *
+ * \note            In order to start using this port, user must set the appropriate COM port name when opening a virtual file. 
+ *                  Please check implementation file for details.
+ *
+ * \subsection      subsect_project_examples_arm_stm32 STM32 (ARM Cortex-M)
+ *
+ * Library is indendant from CPU architecture, meaning we can also run it on embedded systems. 
+ * Different ports for `FreeRTOS` operating system and `STM32` based microcontrollers are available too.
+ *
+ *  <table>
+ * 	    <caption>STM32 boards and pinouts for tests</caption>
+ *      <tr><th>Board name       <th>STM32F769I-Discovery   <th>STM32F723E-Discovery   <th>STM32L496G-Discovery   <th>STM32L432KC-Nucleo
+ *      <tr><td colspan="5" style="text-align: center;"><b>GPIO settings</b>
+ *      <tr><td>ESP_RX (MCU_TX pin) <td>PC12                <td>PC12                   <td>PB6                    <td>PA9
+ *      <tr><td>ESP_TX (MCU_RX pin) <td>PD2                 <td>PD2                    <td>PG10                   <td>PA10
+ *      <tr><td>ESP_RESET        <td>PJ14                   <td>PG14                   <td>PB2                    <td>PA12
+ *      <tr><td>ESP_CH_PD        <td>-                      <td>PD3                    <td>PA4                    <td>PB0
+ *      <tr><td>ESP_GPIO0        <td>-                      <td>-                      <td>PH0                    <td>PA7
+ *      <tr><td>ESP_GPIO2        <td>-                      <td>PD6                    <td>PA0                    <td>PA6
+ *      <tr><td>Comment          <td>Use `CN2` to plug-in device <td>                  <td>                       <td>
+ *      <tr><td colspan="5" style="text-align: center;"><b>UART settings for ESP8266</b>
+ *      <tr><td>UART             <td>UART5                  <td>UART5                  <td>USART1                 <td>USART1
+ *      <tr><td>Implementation file <td>`esp_ll_stm32f769i_discovery.c` <td>`esp_ll_stm32f723e_discovery.c` <td>`esp_ll_stm32l496g_discovery.c` <td>`esp_ll_stm32l432kc_nucleo.c`
+ *      <tr><td colspan="5" style="text-align: center;"><b>Debug settings</b>
+ *      <tr><td>DEBUG_UART       <td>USART1                 <td>USART6                 <td>USART2                 <td>USART2
+ *      <tr><td>DEBUG_TX         <td>PA9                    <td>PC6                    <td>PA2                    <td>PA2
+ *      <tr><td>DEBUG_RX         <td>PA10                   <td>PC7                    <td>PD6                    <td>PA3
+ *      <tr><td>DEBUG_BAUDRATE   <td>921600                 <td>921600                 <td>921600                 <td>921600
+ *      <tr><td>Comment          <td>On-board ST-Link       <td>On-board ST-Link       <td>On-board ST-Link       <td>External USB<->UART needed
+ *  </table>
+ *
+ * \note            All examples for STM32 come with ST's official free development studio.
  *
  * \section         sect_porting_guide Porting guide
  *
- * \subsection      subsect System structure
+ * \subsection      subsect_sys_arch System structure
  *
  * \image html system_structure.svg System structure organization
  *
