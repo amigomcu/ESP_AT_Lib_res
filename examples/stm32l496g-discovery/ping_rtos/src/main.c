@@ -254,6 +254,6 @@ int __io_putchar(int ch) {
 int fputc(int ch, FILE* fil) {
 #endif
     LL_USART_TransmitData8(USART2, (uint8_t)ch);
-    while (!LL_USART_IsActiveFlag_TXE(USART2)) {}
+    while (!LL_USART_IsActiveFlag_TXE(USART2)) { }
     return ch;
 }

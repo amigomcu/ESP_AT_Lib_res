@@ -2,8 +2,6 @@
  * \page            page_appnote Application note
  * \tableofcontents
  *
- * Application note and how to start
- *
  * \section         sect_clone_get_started Clone repository and getting started
  *
  * Library development is fully hosted on Github and there is no future plans to move to any other platform.
@@ -27,7 +25,7 @@
  *  - Run `git clone https://github.com/MaJerle/ESP_AT_Lib_res` command to clone repository
  *  - Enter into newly cloned folder using `cd ESP_AT_Lib_res`. Now we are inside working git directory
  *  - Run command `git submodule update --init --recursive` to download and update all submodules
- *  - Navigate to `examples` directory and run favorite example
+ *  - Navigate to `examples` directory and run favourite example
  *
  * \subsection      subsect_clone_lib Clone library only
  *
@@ -37,7 +35,7 @@
  *  - Open console and navigate to path in the system to clone repository to. Use command `cd your_path`
  *  - Run `git clone https://github.com/MaJerle/ESP_AT_Lib` command to clone repository
  *
- * \section         sect_project_examples Project examples
+ * \section         sect_project_examples Example projects
  *
  * \note            Examples are part of `ESP_AT_Lib_res` repository. Refer to \ref subsect_clone_res
  *
