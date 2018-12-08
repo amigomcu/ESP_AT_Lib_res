@@ -60,21 +60,21 @@
  * 
  * For wiring, you may use table below, to prepare pins before you can execute upload command
  *
-\verbatim
-PIN           ESP-01       ESP-07/12    Description
-
-GND           GND          GND          Ground power supply
-VCC           VCC          VCC          3.3 (!) V power supply. At least about 200mA should be available from supply for ESP spikes it can generate
-TXD           TXD          TXD          This is TXD pin from ESP. It should be connected to RX pin of your USB<->UART converter.
-RXD           RXD          RXD          This is RXD pin to ESP. It should be connected to TX pin of your USB<->UART converted.
-GPIO0         VCC          VCC          When tied to VCC, ESP8266 is in normal mode, when tied to GND, ESP8266 is in bootloader mode ready to be updated!
-GPIO2         VCC          VCC          Boot mode selection
-GPIO15        NC           GND          This pin in not available on ESP-01 module and is connected to GND. On ESP-07 must be manually connected to GND
-RST           VCC          VCC          Connected to VCC using 10k pull-up resistor to easy reset it when necessary
-EN (CH_PD)    VCC          VCC          Connected to VCC to enable ESP8266 operation
-\endverbatim
+ * 	<table>
+ *		<caption>Pinout configuration</caption>
+ *		<tr><th>PIN 		<th>ESP-01	<th>ESP-07/12	<th>Description
+ *		<tr><td>GND 		<td>GND 	<td>GND 		<td>Ground power supply
+ *		<tr><td>VCC			<td>VCC		<td>VCC 		<td>3.3 (!) V power supply. At least about 200mA should be available from supply for ESP spikes it can generate
+ *		<tr><td>TXD			<td>TXD		<td>TXD 		<td>This is `TX` pin from ESP. It should be connected to `RX` pin of your USB<->UART converter
+ *		<tr><td>RXD			<td>RXD		<td>RXD 		<td>This is `RX` pin to ESP. It should be connected to `TX` pin of your USB<->UART converted
+ *		<tr><td>GPIO0		<td>VCC		<td>VCC 		<td>When tied to `VCC`, ESP is in normal mode, when tied to `GND`, `ESP` is in bootloader mode ready to be updated
+ *		<tr><td>GPIO2		<td>VCC		<td>VCC 		<td>Boot mode selection
+ *		<tr><td>GPIO15		<td>-		<td>GND 		<td>When available, connect to `GND`
+ *		<tr><td>RST 		<td>VCC		<td>VCC 		<td>Connected to `VCC` using `10k pull-up` resistor to easy reset it when necessary
+ *		<tr><td>EN (CH_PD)	<td>VCC		<td>VCC 		<td>Connected to `VCC` to enable ESP operation
+ * 	</table>
  *
- * \warning         GPIO pin levels should not be greater than 3.6V or you may damage device
+ * \warning         GPIO pin levels should not be higher than `3.6V` or you may damage your device
  * 
  * \note            <b>Wiring for updating is the same as in normal operation, except `GPIO0` must be tied to `LOW`</b>
  *
@@ -82,13 +82,13 @@ EN (CH_PD)    VCC          VCC          Connected to VCC to enable ESP8266 opera
  *
  * ESP8266 supports 3 boot modes and it uses 3 GPIO pins to achieve this (2 would be enough):
  *
-\verbatim
-GPIO0   GPIO2   GPIO15     BOOT MODE
-
-LOW     HIGH    LOW        Serial programming mode, ready to update
-HIGH    HIGH    LOW        Boot from flash (normal operation for ESP-01 to ESP-12 modules)
-ANY     ANY     HIGH       Boot from SDCARD (if connected to SDIO port)
-\endverbatim
+ * 	<table>
+ *		<caption>Boot mode selection</caption>
+ *		<tr><th>GPIO0		<th>GPIO2	<th>GPIO15 	<th>BOOT MODE
+ *		<tr><td>LOW 		<td>HIGH 	<td>LOW		<td>Serial programming mode, ready to update
+ *		<tr><td>HIGH 		<td>HIGH	<td>LOW 	<td>Boot from flash (normal operation for ESP-01 to ESP-12 modules)
+ *		<tr><td>ANY			<td>ANY		<td>HIGH 	<td>Boot from SDCARD (when connected to SDIO port)
+ * 	</table>
  *
  * \note            To start update process, connect ESP8266 module with USB<->UART converter and set <b>GPIO0 pins LOW</b> and toggle <b>RST pin from high to low and back</b> to reset module
  *
@@ -117,7 +117,7 @@ ANY     ANY     HIGH       Boot from SDCARD (if connected to SDIO port)
  * <b>source</b> folder contains <b>readme</b> file where all paths are explained how to use them.
  *
  * For example, if you want OTA, then you need BOOT mode option when checking readme.txt file.
- * In case you have 8Mbit flash (1 MByte = 512kB + 512kB) readme says this:
+ * In case you have 8Mbit flash `1 MByte = 512kB + 512kB` readme says this:
  *
 \verbatim
 ***********************BOOT MODE***********************
@@ -142,7 +142,7 @@ blank.bin               0x7e000 & 0xfe000            blank (all zeros) for some 
  *
  * \note            Find COM port in device manager and set baudrate to 115200 bauds and press start.
  *
- * \note            If updating did not start, make sure COM port is correct and make sure you pull GPIO0 pin to LOW and you have reset device with RST pin to LOW and back HIGH.
+ * \note            If updating did not start, make sure COM port is correct and make sure you pull `GPIO0` pin to `LOW` and you have reset device with `RST` pin to LOW and back `HIGH`.
  *
  * After you are ready, press <b>START</b> button to begin downloading software to ESP8266
  *
@@ -150,7 +150,7 @@ blank.bin               0x7e000 & 0xfe000            blank (all zeros) for some 
  *
  * \par             Step 6: Finish
  *
- * When download finishes, set GPIO0 pin back to HIGH and reset module again. Now you should have update module to new software.
+ * When download finishes, set `GPIO0` pin back to HIGH and reset module again. Now you should have update module to new software.
 
  * \image html update_process_step_6.png "Updating process has finished"
  *
