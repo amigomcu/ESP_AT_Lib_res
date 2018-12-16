@@ -103,13 +103,6 @@ netconn_client_thread(void const* arg) {
         }
     }
 
-    /*
-     * Last step is to delete connection object
-     */
-    esp_netconn_delete(client);
-
-    /*
-     * Terminate thread once we are done with example
-     */
-    esp_sys_thread_terminate(NULL);
+    esp_netconn_delete(client);                 /* Delete netconn structure */
+    esp_sys_thread_terminate(NULL);             /* Terminate current thread */
 }
