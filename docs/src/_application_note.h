@@ -112,7 +112,7 @@
  *
  * \image html system_structure.svg System structure organization
  *
- * We can describe library structure in 4 different layers:
+ * We can describe library structure in `4` different layers:
  *
  *  - <b>User application</b>: User application is highest layer where entire code is implemented by user
  *      and where ESP AT library API functions are called from
