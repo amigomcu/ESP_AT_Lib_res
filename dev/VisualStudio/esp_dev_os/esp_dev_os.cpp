@@ -64,84 +64,21 @@ main_thread(void* arg) {
      *
      * This should always pass
      */
-    if (esp_sta_has_ip() == espOK) {
+    if (esp_sta_has_ip()) {
         esp_ip_t ip;
         esp_sta_copy_ip(&ip, NULL, NULL);
         printf("Connected to WIFI!\r\n");
         printf("Device IP: %d.%d.%d.%d\r\n", ip.ip[0], ip.ip[1], ip.ip[2], ip.ip[3]);
     }
 
-    esp_conn_set_ssl_buffersize(4096, 1);
-    esp_conn_start(NULL, ESP_CONN_TYPE_TCP, "majerle.eu", 443, NULL, esp_conn_evt, 0);
+    esp_conn_start(NULL, ESP_CONN_TYPE_TCP, "192.168.1.75", 1234, NULL, esp_conn_evt, 0);
 
     /* Start server on port 80 */
     //http_server_start();
     //esp_sys_thread_create(NULL, "netconn_server", (esp_sys_thread_fn)netconn_server_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "netconn_server_single", (esp_sys_thread_fn)netconn_server_1thread_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "mqtt_client", (esp_sys_thread_fn)mqtt_client_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
-    //esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
-
-    while (1) {
-        if (!esp_sta_is_joined()) {
-            esp_sta_join("Majerle AMIS", "majerle_internet_private", NULL, 1, 1);
-        }
-        esp_delay(1000);
-        continue;
-        char ch = getc(stdin);
-        switch (ch) {
-            case 'Q': {
-                esp_sta_quit(1);
-                break;
-            }
-            case 'J': {
-                connect_to_preferred_access_point(1);
-                break;
-            }
-            default: break;
-        }
-    }
-
-    while (0) {
-        esp_netconn_p nc;
-        espr_t res;
-        esp_pbuf_p p;
-
-        nc = esp_netconn_new(ESP_NETCONN_TYPE_TCP);
-        if (nc != NULL) {
-            res = esp_netconn_connect(nc, "majerle.eu", 80);
-            if (res == espOK) {
-                size_t total = 0, len;
-                const char tx_data[] = ""
-                    "GET /examples/file_1M.txt HTTP/1.1\r\n"
-                    "Host: majerle.eu\r\n"
-                    "Connection: close\r\n"
-                    "\r\n";
-
-                /* Send data */
-                esp_netconn_write(nc, tx_data, strlen(tx_data));
-                esp_netconn_flush(nc);
-
-                /* Process receive data */
-                do {
-                    res = esp_netconn_receive(nc, &p);
-                    if (res == espOK) {
-                        len = esp_pbuf_length(p, 1);
-                        total += len;
-                        printf("\r\n\r\nReceived %d bytes of data, total %d bytes\r\n", (int)len, (int)total);
-                        esp_pbuf_free(p);
-                    } else if (res == espCLOSED) {
-                        printf("\r\nConnection closed!\r\n");
-                    } else {
-                        printf("\r\nRes: %d\r\n", (int)res);
-                    }
-                } while (res == espOK);
-                esp_netconn_delete(nc);
-                nc = NULL;
-            }
-        }
-
-        esp_delay(5000);
-    }
+    esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
 
     /* Terminate thread */
     esp_sys_thread_terminate(NULL);
@@ -217,16 +154,25 @@ esp_evt(esp_evt_t* evt) {
 
 static espr_t
 esp_conn_evt(esp_evt_t* evt) {
-    static char data[] = ""
-        "GET /examples/file_10k.txt HTTP/1.1\r\n"
-        "Host: majerle.eu\r\n"
-        "Connection: close\r\n"
-        "\r\n";
+    static char data[] = "test data string\r\n";
+    esp_conn_p conn;
+
+    conn = esp_conn_get_from_evt(evt);
 
     switch (evt->type) {
         case ESP_EVT_CONN_ACTIVE: {
             printf("Connection active!\r\n");
-            esp_conn_send(esp_evt_conn_active_get_conn(evt), data, sizeof(data) - 1, NULL, 0);
+            printf("Send API call: %d\r\n", (int)esp_conn_send(conn, data, sizeof(data) - 1, NULL, 0));
+            printf("Send API call: %d\r\n", (int)esp_conn_send(conn, data, sizeof(data) - 1, NULL, 0));
+            printf("Send API call: %d\r\n", (int)esp_conn_send(conn, data, sizeof(data) - 1, NULL, 0));
+            printf("Close API call: %d\r\n", (int)esp_conn_close(conn, 0));
+            printf("Send API call: %d\r\n", (int)esp_conn_send(conn, data, sizeof(data) - 1, NULL, 0));
+            printf("Close API call: %d\r\n", (int)esp_conn_close(conn, 0));
+
+            /*
+            esp_conn_send(conn, data, sizeof(data) - 1, NULL, 0);
+            esp_conn_send(conn, data, sizeof(data) - 1, NULL, 0);
+            */
             break;
         }
         case ESP_EVT_CONN_DATA_SEND: {
