@@ -175,8 +175,8 @@ esp_conn_evt(esp_evt_t* evt) {
             */
             break;
         }
-        case ESP_EVT_CONN_DATA_SEND: {
-            espr_t res = esp_evt_conn_data_send_get_result(evt);
+        case ESP_EVT_CONN_SEND: {
+            espr_t res = esp_evt_conn_send_get_result(evt);
             if (res == espOK) {
                 printf("Connection data sent!\r\n");
             } else {
@@ -184,9 +184,9 @@ esp_conn_evt(esp_evt_t* evt) {
             }
             break;
         }
-        case ESP_EVT_CONN_DATA_RECV: {
-            esp_pbuf_p pbuf = esp_evt_conn_data_recv_get_buff(evt);
-            esp_conn_p conn = esp_evt_conn_data_recv_get_conn(evt);
+        case ESP_EVT_CONN_RECV: {
+            esp_pbuf_p pbuf = esp_evt_conn_recv_get_buff(evt);
+            esp_conn_p conn = esp_evt_conn_recv_get_conn(evt);
             printf("\r\nConnection data received: %d / %d bytes\r\n",
                 (int)esp_pbuf_length(pbuf, 1),
                 (int)esp_conn_get_total_recved_count(conn)

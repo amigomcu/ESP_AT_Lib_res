@@ -88,9 +88,9 @@ esp_server_callback_func(esp_evt_t* evt) {
             printf("Connection %d active as server!\r\n", (int)esp_conn_getnum(conn));
             break;
         }
-        case ESP_EVT_CONN_DATA_RECV: {          /* Connection data received */
+        case ESP_EVT_CONN_RECV: {               /* Connection data received */
             esp_pbuf_p p;
-            p = esp_evt_conn_data_recv_get_buff(evt);   /* Get received buffer */
+            p = esp_evt_conn_recv_get_buff(evt);/* Get received buffer */
             if (p != NULL) {
                 printf("Server connection %d data received with %d bytes\r\n",
                     (int)esp_conn_getnum(conn), (int)esp_pbuf_length(p, 1));

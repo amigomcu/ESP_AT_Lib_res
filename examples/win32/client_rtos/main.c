@@ -115,10 +115,10 @@ esp_conn_callback_func(esp_evt_t* evt) {
             esp_conn_send(conn, request_data, sizeof(request_data) - 1, NULL, 0);
             break;
         }
-        case ESP_EVT_CONN_DATA_SEND: {          /* Data send event */
-            espr_t res = esp_evt_conn_data_send_get_result(evt);
+        case ESP_EVT_CONN_SEND: {               /* Data send event */
+            espr_t res = esp_evt_conn_send_get_result(evt);
             if (res == espOK) {
-                size_t len = esp_evt_conn_data_send_get_length(evt);
+                size_t len = esp_evt_conn_send_get_length(evt);
                 printf("Successfully sent %d bytes on connection %d\r\n",
                     (int)len, (int)esp_conn_getnum(conn));
             } else {
@@ -127,9 +127,9 @@ esp_conn_callback_func(esp_evt_t* evt) {
             }
             break;
         }
-        case ESP_EVT_CONN_DATA_RECV: {          /* Connection data received */
+        case ESP_EVT_CONN_RECV: {               /* Connection data received */
             esp_pbuf_p p;
-            p = esp_evt_conn_data_recv_get_buff(evt);   /* Get received buffer */
+            p = esp_evt_conn_recv_get_buff(evt);/* Get received buffer */
             if (p != NULL) {
                 printf("Connection %d data received with %d bytes\r\n",
                     (int)esp_conn_getnum(conn), (int)esp_pbuf_length(p, 1));

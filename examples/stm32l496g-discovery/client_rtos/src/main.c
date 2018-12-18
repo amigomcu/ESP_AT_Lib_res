@@ -139,8 +139,8 @@ conn_callback_func(esp_evt_t* evt) {
             }
             break;
         }
-        case ESP_EVT_CONN_DATA_SEND: {          /* Data send event */
-            espr_t res = esp_evt_conn_data_send_get_result(evt);
+        case ESP_EVT_CONN_SEND: {               /* Data send event */
+            espr_t res = esp_evt_conn_send_get_result(evt);
             if (res == espOK) {
                 printf("Data sent successfully...waiting to receive data from remote side...\r\n");
             } else {
@@ -148,8 +148,8 @@ conn_callback_func(esp_evt_t* evt) {
             }
             break;
         }
-        case ESP_EVT_CONN_DATA_RECV: {          /* Data received from remote side */
-            esp_pbuf_p pbuf = esp_evt_conn_data_recv_get_buff(evt);
+        case ESP_EVT_CONN_RECV: {               /* Data received from remote side */
+            esp_pbuf_p pbuf = esp_evt_conn_recv_get_buff(evt);
             esp_conn_recved(conn, pbuf);        /* Notify stack about received pbuf */
             printf("Received %d bytes on connection..\r\n", (int)esp_pbuf_length(pbuf, 1));
             break;
