@@ -46,8 +46,11 @@ main(void) {
     printf("Starting ESP application!\r\n");
 
     /* Initialize ESP with default callback function */
+    printf("Initializing ESP-AT Lib\r\n");
     if (esp_init(esp_callback_func, 1) != espOK) {
-        printf("Cannot initialize ESP-AT Library\r\n");
+        printf("Cannot initialize ESP-AT Lib!\r\n");
+    } else {
+        printf("ESP-AT Lib initialized!\r\n");
     }
 
     /*
