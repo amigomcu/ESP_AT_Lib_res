@@ -83,26 +83,26 @@
  * Different ports for `FreeRTOS` operating system and `STM32` based microcontrollers are available too.
  *
  *  <table>
- * 	    <caption>STM32 boards and pinouts for tests</caption>
- *      <tr><th>Board name       <th>STM32F769I-Discovery   <th>STM32F723E-Discovery   <th>STM32L496G-Discovery   <th>STM32L432KC-Nucleo
- *      <tr><td colspan="5" style="text-align: center;"><b>GPIO settings</b>
- *      <tr><td>ESP_RX (MCU_TX pin) <td>PC12                <td>PC12                   <td>PB6                    <td>PA9
- *      <tr><td>ESP_TX (MCU_RX pin) <td>PD2                 <td>PD2                    <td>PG10                   <td>PA10
- *      <tr><td>ESP_RESET        <td>PJ14                   <td>PG14                   <td>PB2                    <td>PA12
- *      <tr><td>ESP_CH_PD        <td>-                      <td>PD3                    <td>PA4                    <td>PB0
- *      <tr><td>ESP_GPIO0        <td>-                      <td>-                      <td>PH0                    <td>PA7
- *      <tr><td>ESP_GPIO2        <td>-                      <td>PD6                    <td>PA0                    <td>PA6
- *      <tr><td>Comment          <td>Use `CN2` to plug-in device <td>                  <td>                       <td>
- *      <tr><td colspan="5" style="text-align: center;"><b>UART settings for ESP8266</b>
- *      <tr><td>UART             <td>UART5                  <td>UART5                  <td>USART1                 <td>USART1
- *      <tr><td>Implementation file <td>`esp_ll_stm32f769i_discovery.c` <td>`esp_ll_stm32f723e_discovery.c` <td>`esp_ll_stm32l496g_discovery.c` <td>`esp_ll_stm32l432kc_nucleo.c`
- *      <tr><td colspan="5" style="text-align: center;"><b>Debug settings</b>
- *      <tr><td>DEBUG_UART       <td>USART1                 <td>USART6                 <td>USART2                 <td>USART2
- *      <tr><td>DEBUG_TX         <td>PA9                    <td>PC6                    <td>PA2                    <td>PA2
- *      <tr><td>DEBUG_RX         <td>PA10                   <td>PC7                    <td>PD6                    <td>PA3
- *      <tr><td>DEBUG_BAUDRATE   <td>921600                 <td>921600                 <td>921600                 <td>921600
- *      <tr><td>Comment          <td>On-board ST-Link       <td>On-board ST-Link       <td>On-board ST-Link       <td>External USB<->UART needed
+ *      <caption>STM32 boards and pinouts for tests</caption>
+ *      <tr><th> 						<th colspan="7">ESP target settings							<th colspan="5">Debug settings
+ *      <tr><th>Board name				<th>UART 	<th>MTX <th>MRX <th>RST <th>GPI0<th>GPI2<th>CHPD<th>UART    <th>MDTX<th>MDRX<th>DBD     <th>Comment
+ *      <tr><td>\b STM32F769I-Discovery <td>UART5 	<td>PC12<td>PD2 <td>PJ14<td>-   <td>-   <td>-   <td>USART1  <td>PA9 <td>PA10<td>921600  <td>OBSTL
+ *      <tr><td>\b STM32F723E-Discovery <td>UART5 	<td>PC12<td>PD2 <td>PG14<td>-   <td>PD6 <td>PD3 <td>USART6  <td>PC6 <td>PC7 <td>921600  <td>OBSTL
+ *      <tr><td>\b STM32L496G-Discovery <td>USART1 	<td>PB6 <td>PG10<td>PB2 <td>PH2 <td>PA0 <td>PA4 <td>USART2  <td>PA2 <td>PD6 <td>921600  <td>OBSTL
+ *      <tr><td>\b STM32L432KC-Nucleo   <td>USART1 	<td>PA9 <td>PA10<td>PA12<td>PA7 <td>PA6 <td>PB0 <td>USART2  <td>PA2 <td>PA3 <td>921600  <td>OBSTL
+ *      <tr><td>\b STM32F429ZI-Nucleo   <td>USART2 	<td>PD5 <td>PD6 <td>PD1 <td>PD4 <td>PD7 <td>PD3 <td>USART3  <td>PD8 <td>PD9 <td>921600  <td>OBSTL
  *  </table>
+ *
+ * 	- \b MTX: MCU TX pin, other device RX pin
+ * 	- \b MRX: MCU RX pin, other device TX pin
+ * 	- \b RST: Reset pin from ESP device, connected to MCU
+ * 	- \b GPI0: ESP GPIO0 pin, connected to MCU
+ * 	- \b GPI2: ESP GPIO0 pin, connected to MCU
+ * 	- \b CHPD: ESP CH PD pin, connected to MCU
+ * 	- \b MDTX: MCU Debug TX pin, other device RX pin
+ * 	- \b MDRX: MCU Debug RX pin, other device TX pin
+ * 	- \b DBD: Debug UART baudrate
+ * 	- \b OBSTL: On-Board ST-Link USB virtual COM port
  *
  * \note            All examples for STM32 come with ST's official free development studio.
  *
