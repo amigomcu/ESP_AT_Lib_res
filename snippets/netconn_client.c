@@ -26,6 +26,7 @@ netconn_client_thread(void const* arg) {
     espr_t res;
     esp_pbuf_p pbuf;
     esp_netconn_p client;
+    esp_sys_sem_t* sem = (void *)arg;
 
     /*
      * First create a new instance of netconn
@@ -102,7 +103,10 @@ netconn_client_thread(void const* arg) {
             printf("Cannot connect to remote host %s:%d!\r\n", NETCONN_HOST, NETCONN_PORT);
         }
     }
-
     esp_netconn_delete(client);                 /* Delete netconn structure */
+
+    if (esp_sys_sem_isvalid(sem)) {
+        esp_sys_sem_release(sem);
+    }
     esp_sys_thread_terminate(NULL);             /* Terminate current thread */
 }
