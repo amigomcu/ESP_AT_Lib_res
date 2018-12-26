@@ -1,6 +1,4 @@
-/*
- * Modifications of esp_config.h file for configuration
- */
+/* Modifications of esp_config.h file for configuration */
 
 /* Enable global debug */
 #define ESP_CFG_DBG                             ESP_DBG_ON
