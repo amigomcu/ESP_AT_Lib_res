@@ -41,7 +41,7 @@
  *
  * Several examples are available to show application use cases. These are split and can be tested on different systems.
  *
- * \subsection      subsect_project_examples_win32 WIN32
+ * \subsection      subsect_project_examples_win32 WIN32 examples
  *
  * Library is developed under WIN32 system. That is, all examples are first developed and tested under WIN32, later ported to embedded application.
  * Examples come with <b>Visual Studio</b> project. You may open project and directly run the example from there.
@@ -77,7 +77,7 @@
  * \note            In order to start using this port, user must set the appropriate COM port name when opening a virtual file. 
  *                  Please check implementation file for details.
  *
- * \subsection      subsect_project_examples_arm_stm32 STM32 (ARM Cortex-M)
+ * \subsection      subsect_project_examples_arm_embedded ARM Cortex-M examples
  *
  * Library is indendant from CPU architecture, meaning we can also run it on embedded systems. 
  * Different ports for `FreeRTOS` operating system and `STM32` based microcontrollers are available too.
