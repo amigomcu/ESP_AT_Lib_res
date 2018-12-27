@@ -98,7 +98,7 @@ esp_evt(esp_evt_t* evt) {
             break;
         }
         case ESP_EVT_RESET: {
-            printf("Device reset!\r\n");
+            printf("Device reset detected!\r\n");
             break;
         }
         case ESP_EVT_AT_VERSION_NOT_SUPPORTED: {

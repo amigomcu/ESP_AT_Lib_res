@@ -94,7 +94,7 @@ esp_callback_func(esp_evt_t* evt) {
             printf("Library initialized!\r\n");
             break;
         }
-        case ESP_EVT_RESET: {
+        case ESP_EVT_RESET_DETECTED: {
             printf("Device reset detected!\r\n");
             break;
         }
