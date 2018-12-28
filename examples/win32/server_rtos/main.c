@@ -63,7 +63,7 @@ main(void) {
     connect_to_preferred_access_point(1);
 
     /* Start server on port 80 */
-    esp_set_server(1, 80, ESP_CFG_MAX_CONNS, 0, esp_server_callback_func, 1);
+    esp_set_server(1, 80, ESP_CFG_MAX_CONNS, 0, esp_server_callback_func, NULL, NULL, 1);
 
     /*
      * Do not stop program here as we still need to wait

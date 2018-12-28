@@ -55,7 +55,7 @@ main(void) {
     }
 
     /* Enable access point only mode */
-    if ((res = esp_set_wifi_mode(ESP_MODE_AP, 1)) == espOK) {
+    if ((res = esp_set_wifi_mode(ESP_MODE_AP, NULL, NULL, 1)) == espOK) {
         printf("ESP set to access-point-only mode\r\n");
     } else {
         printf("Problems setting ESP to access-point-only mode: %d\r\n", (int)res);
