@@ -98,7 +98,7 @@ init_thread(void const* arg) {
     /* Process and ping all hosts */
     for (i = 0; i < ESP_ARRAYSIZE(hosts); i++) {
         printf("Pinging %s...", hosts[i]);
-        if ((res = esp_ping(hosts[i], &time, 1)) == espOK) {
+        if ((res = esp_ping(hosts[i], &time, NULL, NULL, 1)) == espOK) {
             printf("succeeded with time: %d\r\n", (int)time);
         } else {
             printf("failed with error: %d\r\n", (int)res);

@@ -98,7 +98,19 @@ esp_evt(esp_evt_t* evt) {
             break;
         }
         case ESP_EVT_RESET: {
-            printf("Device reset detected!\r\n");
+            if (esp_evt_reset_get_result(evt) == espOK) {
+                printf("Reset sequence successful!\r\n");
+            } else {
+                printf("Reset sequence error!\r\n");
+            }
+            break;
+        }
+        case ESP_EVT_RESTORE: {
+            if (esp_evt_restore_get_result(evt) == espOK) {
+                printf("Restore sequence successful!\r\n");
+            } else {
+                printf("Restore sequence error!\r\n");
+            }
             break;
         }
         case ESP_EVT_AT_VERSION_NOT_SUPPORTED: {

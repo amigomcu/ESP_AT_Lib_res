@@ -51,7 +51,7 @@ connect_to_preferred_access_point(uint8_t unlimited) {
          * Scan for access points visible to ESP device
          */
         printf("Scanning access points...\r\n");
-        if ((eres = esp_sta_list_ap(NULL, aps, ESP_ARRAYSIZE(aps), &apf, 1)) == espOK) {
+        if ((eres = esp_sta_list_ap(NULL, aps, ESP_ARRAYSIZE(aps), &apf, NULL, NULL, 1)) == espOK) {
             tried = 0;
             /* Print all access points found by ESP */
             for (size_t i = 0; i < apf; i++) {
@@ -65,7 +65,7 @@ connect_to_preferred_access_point(uint8_t unlimited) {
                         tried = 1;
                         printf("Connecting to \"%s\" network...\r\n", ap_list[j].ssid);
                         /* Try to join to access point */
-                        if ((eres = esp_sta_join(ap_list[j].ssid, ap_list[j].pass, NULL, 1, 1)) == espOK) {
+                        if ((eres = esp_sta_join(ap_list[j].ssid, ap_list[j].pass, NULL, 1, NULL, NULL, 1)) == espOK) {
                             esp_ip_t ip;
                             esp_sta_copy_ip(&ip, NULL, NULL);
 
@@ -101,7 +101,7 @@ static uint8_t is_listing = 0, is_connected;
 static void
 scan_access_points(void) {
     if (!is_listing) {
-        if (esp_sta_list_ap(NULL, aps, ESP_ARRAYSIZE(aps), &apf, 0) == espOK) {
+        if (esp_sta_list_ap(NULL, aps, ESP_ARRAYSIZE(aps), &apf, NULL, NULL, 0) == espOK) {
             printf("Access point scan started\r\n");
             is_listing = 1;                 /* Start scan procedure in async way */
         } else {
@@ -127,7 +127,7 @@ join_to_next_ap(void) {
         for (size_t i = 0; i < ESP_ARRAYSIZE(ap_list); i++) {
             if (!strcmp(aps[last_index].ssid, ap_list[i].ssid)) {
                 printf("Start connection to %s access point\r\n", aps[last_index].ssid);
-                if (esp_sta_join(ap_list[i].ssid, ap_list[i].pass, NULL, 0, 0) == espOK) {
+                if (esp_sta_join(ap_list[i].ssid, ap_list[i].pass, NULL, 0, NULL, NULL, 0) == espOK) {
                     last_index++;               /* Manually increase index */
                     return;
                 }

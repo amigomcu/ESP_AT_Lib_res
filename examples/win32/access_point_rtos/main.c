@@ -62,7 +62,7 @@ main(void) {
     }
 
     /* Configure access point */
-    res = esp_ap_configure("ESP_AccessPoint", "ap_password", 13, ESP_ECN_WPA2_PSK, 5, 0, 0, 1);
+    res = esp_ap_configure("ESP_AccessPoint", "ap_password", 13, ESP_ECN_WPA2_PSK, 5, 0, 0, NULL, NULL, 1);
     if (res == espOK) {
         printf("Access point configured!\r\n");
     }

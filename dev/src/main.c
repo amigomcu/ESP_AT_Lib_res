@@ -201,7 +201,7 @@ EXTI3_IRQHandler(void) {
     if (is_device_present()) {
         printf("Device present!\r\n");
         esp_device_set_present(1, 0);           /* Notify stack about device present */
-        esp_reset_with_delay(2000, 0);
+        esp_reset_with_delay(2000, NULL, NULL, 0);
     } else {
         printf("Device disconnected!\r\n");
         esp_device_set_present(0, 0);           /* Notify stack about device not connected anymore */

@@ -62,7 +62,7 @@ main(void) {
     connect_to_preferred_access_point(1);
 
     /* Try to ping host */
-    if (esp_ping("example.com", &time, 1) == espOK) {
+    if (esp_ping("example.com", &time, NULL, NULL, 1) == espOK) {
         printf("Host example.com successfully pinged in %d milliseconds\r\n", (int)time);
     } else {
         printf("Error while trying to ping example.com\r\n");

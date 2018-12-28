@@ -71,7 +71,7 @@ mqtt_client_thread(void const* arg) {
     esp_evt_register(mqtt_esp_cb);              /* Register new callback for general events from ESP stack */
     
     /* Get station MAC to format client ID */
-    if (esp_sta_getmac(&mac, 0, 1) == espOK) {
+    if (esp_sta_getmac(&mac, 0, NULL, NULL, 1) == espOK) {
         snprintf(mqtt_client_id, sizeof(mqtt_client_id), "%02X%02X%02X%02X%02X%02X",
             (unsigned)mac.mac[0], (unsigned)mac.mac[1], (unsigned)mac.mac[2],
             (unsigned)mac.mac[3], (unsigned)mac.mac[4], (unsigned)mac.mac[5]
