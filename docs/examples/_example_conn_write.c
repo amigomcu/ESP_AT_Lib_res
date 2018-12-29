@@ -16,7 +16,7 @@ res = esp_conn_write(conn, "My string", 9, 0, &rem_len);
 if (rem_len == 0) {
     printf("No more memory available for next write!\r\n");
 }
-res = esp_conn_write(conn, "Example.com", 11, 0, &rem_len);
+res = esp_conn_write(conn, "example.com", 11, 0, &rem_len);
 
 /*
  * Data will stay in buffer until buffer is full,
