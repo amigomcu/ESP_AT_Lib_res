@@ -6,7 +6,7 @@
  *
  * List of full specs is available <a href="http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.pdf">here</a>.
  *
- * \par             Example
+ * \par             Example code
  *
  * \include         _example_mqtt_client.c
  *

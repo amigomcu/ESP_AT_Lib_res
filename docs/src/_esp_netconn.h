@@ -27,9 +27,9 @@
  * To allow user to handle closed connections while waiting for more data,
  * information about closed connection is also added to received data message queue.
  *
- * \par             Example
+ * \par             Example code
  * 
- * Example shows how to use netconn API to write and read data in synchronous way,
+ * Example code shows how to use netconn API to write and read data in synchronous way,
  * no need to have complex code structure for asynchronous data reception callbacks
  *
  * \include         _example_netconn_client.c
@@ -58,7 +58,7 @@
  * control is given to client object which can be later
  * read and written in the same way as client mode.
  * 
- * \par             Example
+ * \par             Example code
  *
  * \include         _example_netconn_server.c
  *
@@ -69,7 +69,7 @@
  * Possible drawback is higher RAM usage due to multiple threads (each client own thread),
  * but this makes communication much stable.
  *
- * \par             Example
+ * \par             Example code
  *
  * An example shows single netconn thread which waits for new client.
  * When new client is accepted, it will initiate a new thread with client handle and will immediatelly wait for next client,

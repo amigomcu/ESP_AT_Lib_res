@@ -13,7 +13,7 @@
  *  2. Configure AT send function to use when we have data to be transmitted
  *  3. Configure AT port to be able to send/receive any data
  *
- * \par             Example
+ * \par             Example code
  * 
  * Example shows basic functionality what user MUST do in order to prepare stack properly.
  *
@@ -45,7 +45,7 @@
  *
  * \note            Use this method if you want to use RX interrupt on microcontroller for AT port
  *
- * \par             Example with RX interrupt writing to receive buffer
+ * \par             Example code with RX interrupt writing to receive buffer
  *
  * \include         _example_input_rx_irq.c
  *

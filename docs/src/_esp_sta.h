@@ -4,9 +4,9 @@
  * 
  * When device is in station mode, it is able to search for and connect to other access points.
  *
- * \par             Example
+ * \par             Example code
  *
- * Example shows how to scan for access points available around device
+ * Example code shows how to scan for access points available around device
  *
  * \include         _example_sta.c
  *

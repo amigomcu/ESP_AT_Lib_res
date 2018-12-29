@@ -31,7 +31,7 @@
  * All debug levels are enabled by default, but this may be changes
  * to print only specific debug types like warning or danger messages.
  *
- * \par             Example
+ * \par             Example code
  *
  * Modifications of config file to enable basic debug:
  *

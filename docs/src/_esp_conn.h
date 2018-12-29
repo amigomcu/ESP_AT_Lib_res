@@ -8,7 +8,7 @@
  *
  * In the below example, you can find frequent use case how to use connection API in non-blocking callback mode.
  *
- * \par             Example
+ * \par             Example code
  *
  * In this example, most useful non-blocking approach is used to handle the connection.
  *

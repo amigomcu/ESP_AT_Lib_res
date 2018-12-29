@@ -16,7 +16,7 @@
  *      - This repository uses `ESP_AT_Lib` repository as `submodule`
  *	    - Repository is used to evaluate library using prepared examples
  *
- * \subsection      subsect_clone_res Clone resources repository with examples
+ * \subsection      sect_clone_res Clone resources repository with examples
  *
  * Easiest way to test the library is to clone resources repository.
  *
@@ -27,7 +27,7 @@
  *  - Run command `git submodule update --init --recursive` to download and update all submodules
  *  - Navigate to `examples` directory and run favourite example
  *
- * \subsection      subsect_clone_lib Clone library only
+ * \subsection      sect_clone_lib Clone library only
  *
  * If you are already familiar with library and you wish to include it in existing project, easiest way is to clone library repository only.
  *
@@ -37,11 +37,11 @@
  *
  * \section         sect_project_examples Example projects
  *
- * \note            Examples are part of `ESP_AT_Lib_res` repository. Refer to \ref subsect_clone_res
+ * \note            Examples are part of `ESP_AT_Lib_res` repository. Refer to \ref sect_clone_res
  *
  * Several examples are available to show application use cases. These are split and can be tested on different systems.
  *
- * \subsection      subsect_project_examples_win32 WIN32 examples
+ * \subsection      sect_project_examples_win32 WIN32 examples
  *
  * Library is developed under WIN32 system. That is, all examples are first developed and tested under WIN32, later ported to embedded application.
  * Examples come with <b>Visual Studio</b> project. You may open project and directly run the example from there.
@@ -77,7 +77,7 @@
  * \note            In order to start using this port, user must set the appropriate COM port name when opening a virtual file. 
  *                  Please check implementation file for details.
  *
- * \subsection      subsect_project_examples_arm_embedded ARM Cortex-M examples
+ * \subsection      sect_project_examples_arm_embedded ARM Cortex-M examples
  *
  * Library is independant from CPU architecture, meaning we can also run it on embedded systems. 
  * Different ports for `FreeRTOS` operating system and `STM32` based microcontrollers are available too.
@@ -108,7 +108,7 @@
  *
  * \section         sect_porting_guide Porting guide
  *
- * \subsection      subsect_sys_arch System structure
+ * \subsection      sect_sys_arch System structure
  *
  * \image html system_structure.svg System structure organization
  *
@@ -141,7 +141,7 @@
  *
  *  - <b>ESP physical device</b>: Actual ESP8266 or ESP32 device
  *
- * \subsection      subsect_port_implementation Implementation specific part
+ * \subsection      sect_port_implementation Implementation specific part
  *
  * Before usage, user must implement all functions in \ref ESP_LL section
  * as well as take care of proper communication with ESP device in \ref ESP_LL section.
@@ -155,7 +155,7 @@
  *
  * A list of all configurations can be found in \ref ESP_CONF section.
  *
- * \subsection      subsect_conf_file Project configuration file
+ * \subsection      sect_conf_file Project configuration file
  *
  * Library comes with `2` configuration files:
  *
@@ -186,7 +186,7 @@
  *
  * Library consists of 2 threads working in parallel and bunch of different user threads.
  *
- * \subsection      subsect_thread_user User thread(s)
+ * \subsection      sect_thread_user User thread(s)
  *
  * User thread is a place where user communicates with ESP AT library.
  * When a new command wants to be executed to ESP device, user calls appropriate API function which will do following steps:
@@ -236,36 +236,80 @@
  *
  * All these commands must be reported to user. To do this, callback is triggered to notify user.
  *
- * \section         sect_block_nonblock Blocking and non-blocking commands
+ * \section 		sect_events_and_callbacks Events and callback functions
  *
- * Every command (except if noted otherwise) can be executed in blocking or non-blocking mode.
+ * To make library very efficient, events and callback functions are implemented. They are separated in different groups.
  *
- * \subsection      subsect_blocking Blocking mode
+ * \subsection      sect_events_and_callbacks_global Global event function
  *
- * When blocking mode is selected, function will block thread execution until response is received
+ * This is a callback function for all implemented major events, except events related to \ref ESP_CONN.
+ * User may implement all cases from \ref esp_evt_type_t enumeration except those which start with `ESP_CONN_`.
+ *
+ * This callback is set on first stack init using \ref esp_init function.
+ * If later application needs more event functions to receive all events,
+ * user may register/unregister new functions using \ref esp_evt_register and \ref esp_evt_unregister respectively.
+ *
+ * Events which can be implemented:
+ *  - WiFi connected/disconnected
+ *  - Device reset detected
+ *  - New station connected to access point
+ *  - ... 
+ *
+ * \subsection      sect_events_and_callbacks_connection Connection event function
+ *
+ * To optimize application related to connections and to allow easier implementation of different modules,
+ * each connection (started as \em client or \em server) has an option to implement custom callback function for connection related events.
+ *
+ * User may implement all cases from \ref esp_evt_type_t enumeration which start with `ESP_CONN_`.
+ *
+ * Callback function is set when connection is started as client using \ref esp_conn_start or
+ * set on \ref esp_set_server function when enabling server connections
+ *
+ * Events which can be implemented:
+ *  - Connection active
+ *  - Connection data received
+ *  - Connection data sent
+ *  - Connection closed
+ *  - ...
+ *
+ * \subsection      sect_events_and_callbacks_temporary Temporary event for API functions
+ *
+ * When API function (ex. \ref esp_hostname_set) directly interacts with device using AT commands,
+ * user has an option to set callback function and argument when command finishes.
+ *
+ * This feature allows application to optimize upper layer implementation when needed
+ * or when command is executed as non-blocking API call. Read sect_block_nonblock_commands section for more information
+ *
+ * \section         sect_block_nonblock_commands Blocking and non-blocking commands
+ *
+ * When API function needs to interact with device directly before valid data on return,
+ * user has an option to execute it in blocking or non-blocking mode.
+ *
+ * \subsection      sect_blocking Blocking mode
+ *
+ * In blocking mode, function will block thread execution until response is received
  * and ready for further processing. When the function returns, user has known result from ESP device.
- * Linear programming style may be applied.
+ * 
+ *  - Linear programming style may be applied when in thread
+ *  - User may need to use multiple threads to execute multiple features in real-time
  *
- * \include         _example_blocking_pseudo.c
+ * \par 			Example code
  *
- * \warning         When user wants to send command from callback function,
- *                  it is mandatory to call it in non-blocking way, otherwise you may enter dead-lock
- *                  and your program will stop in this position forever.
+ * \include         _example_command_blocking.c
  *
- * \subsection      subsect_nonblocking Non-blocking mode
+ * \note 			It is not allowed to call API function in blocking mode from other ESP event functions!
+ *
+ * \subsection      sect_nonblocking Non-blocking mode
  *
  * In non-blocking mode, command is created, sent to producing message queue and function returns without waiting for response from device.
  * This mode does not allow linear programming style, because after non-blocking command, callback function is called.
  *
- * \note            As of now, fully implemented callbacks are implemented for \ref ESP_CONN section onlyl
- *                  because these are used the most and therefore most focus was applied to this section.
+ * Full example for connections API can be found in \ref ESP_CONN section.
  *
- * \note            When user wants to send command from callback function,
- *                  this is the only allowed way to do it. Every command must be called in
- *                  non-blocking way from callback function.
+ * \par             Example code
  *
- * Pseudo code example for non-blocking API call. Full example for connections API can be found in \ref ESP_CONN section.
+ * \include         _example_command_nonblocking.c
  *
- * \include         _example_nonblocking_pseudo.c
+ * \note            When calling API functions from any event function, it is not allowed to use \b blocking mode
  *
  */
