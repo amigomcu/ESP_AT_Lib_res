@@ -33,16 +33,7 @@
 #ifndef __ESP_CONFIG_H
 #define __ESP_CONFIG_H
 
-/*
- * Rename this file to "esp_config.h" for your application
- */
-
-/* First include debug before any config changes */
-#include "esp/esp_debug.h"
-
-/*
- * Check default configuration settings for more information
- */
+/* User specific config */
 #define ESP_CFG_AT_ECHO                     1
 #define ESP_CFG_SYS_PORT                    ESP_SYS_PORT_WIN32
 #define ESP_CFG_INPUT_USE_PROCESS           1
