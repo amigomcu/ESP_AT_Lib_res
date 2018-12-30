@@ -1,5 +1,5 @@
 /**
- * \addtogroup      ESP_CONF
+ * \addtogroup      ESP_CONFIG
  * \{
  *
  * List of all possible library configuration settings.

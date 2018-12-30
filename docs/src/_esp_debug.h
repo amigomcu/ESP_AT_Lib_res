@@ -45,7 +45,7 @@
  */
 
 /**
- * \addtogroup      ESP_CONF_DBG
+ * \addtogroup      ESP_CONFIG_DBG
  * \{
  *
  * Check \ref ESP_DEBUG section for more information
