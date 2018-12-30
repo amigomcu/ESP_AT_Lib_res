@@ -30,8 +30,8 @@
  *
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
  */
-#ifndef __ESP_CONFIG_H
-#define __ESP_CONFIG_H
+#ifndef ESP_HDR_CONFIG_H
+#define ESP_HDR_CONFIG_H
 
 /* User specific config */
 #define ESP_CFG_AT_ECHO                     1
@@ -43,4 +43,4 @@
 /* Include default configuration setup */
 #include "esp/esp_config_default.h"
 
-#endif /* __ESP_CONFIG_H */
+#endif /* ESP_HDR_CONFIG_H */

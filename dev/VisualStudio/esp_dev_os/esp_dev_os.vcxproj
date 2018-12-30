@@ -145,6 +145,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\mqtt\esp_mqtt_client_api.c" />
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\cli\cli.c" />
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\cli\cli_input.c" />
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_cli.c" />
     <ClCompile Include="..\..\..\snippets\http_server.c" />
     <ClCompile Include="..\..\..\snippets\mqtt_client.c" />
     <ClCompile Include="..\..\..\snippets\mqtt_client_api.c" />
@@ -153,7 +156,6 @@
     <ClCompile Include="..\..\..\snippets\netconn_server_1thread.c" />
     <ClCompile Include="..\..\..\snippets\station_manager.c" />
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\api\esp_netconn.c" />
-    <ClCompile Include="..\..\..\ESP_AT_Lib\src\api\esp_rest_client.c" />
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\http_server\esp_http_server.c" />
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\http_server\esp_http_server_fs.c" />
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\http_server\esp_http_server_fs_win32.c" />

@@ -49,11 +49,16 @@ static espr_t esp_callback_func(esp_evt_t* evt);
 #define ARG_HOSTNAME_GET_SECOND     ((void *)3)
 
 /**
- * \brief           ESP hostname
+ * \brief           Hostname value
  */
 static char
 hostname[20];
 
+/**
+ * \brief           Hostname command callback function
+ * \param[in]       res: Command execution result
+ * \param[in]       arg: Custom user argument
+ */
 void
 hostname_fn(espr_t res, void* arg) {
     if (arg == ARG_HOSTNAME_GET_FIRST) {

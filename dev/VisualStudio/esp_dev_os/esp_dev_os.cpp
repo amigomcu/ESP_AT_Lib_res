@@ -22,6 +22,28 @@ static espr_t esp_conn_evt(esp_evt_t* evt);
 
 esp_sta_info_ap_t connected_ap_info;
 
+uint32_t ping_time;
+
+void
+ping_fn(espr_t res, void* arg) {
+    printf("Ping to %s finished with result: %d and time: %d\r\n", (const char *)arg, (int)res, (int)ping_time);
+}
+
+/**
+ * \brief           Thread for toggling ESP present status
+ */
+void
+esp_device_present_toggle(void const * arg) {
+    while (1) {
+        printf("Setting device present...\r\n");
+        esp_device_set_present(1, NULL, NULL, 1);
+        esp_delay(30000);
+        printf("Setting device not present...\r\n");
+        esp_device_set_present(0, NULL, NULL, 1);
+        esp_delay(5000);
+    }
+}
+
 /**
  * \brief           Program entry point
  */
@@ -44,10 +66,11 @@ main() {
 static void
 main_thread(void* arg) {
 
-    /*
-     * Init ESP library
-     */
+    /* Init ESP library */
     esp_init(esp_evt, 1);
+
+    /* Start thread to toggle device present */
+    esp_sys_thread_create(NULL, "device_present", (esp_sys_thread_fn)esp_device_present_toggle, NULL, 0, ESP_SYS_THREAD_PRIO);
 
     /*
      * Try to connect to preferred access point
@@ -71,14 +94,18 @@ main_thread(void* arg) {
         printf("Device IP: %d.%d.%d.%d\r\n", ip.ip[0], ip.ip[1], ip.ip[2], ip.ip[3]);
     }
 
-    esp_conn_start(NULL, ESP_CONN_TYPE_TCP, "192.168.1.75", 1234, NULL, esp_conn_evt, 0);
+    while (1) {
+        esp_ping("majerle.eu", &ping_time, ping_fn, "majerle.eu", 0);
+        esp_delay(2000);
+    }
 
     /* Start server on port 80 */
     //http_server_start();
+    //esp_sys_thread_create(NULL, "netconn_client", (esp_sys_thread_fn)netconn_client_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "netconn_server", (esp_sys_thread_fn)netconn_server_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "netconn_server_single", (esp_sys_thread_fn)netconn_server_1thread_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "mqtt_client", (esp_sys_thread_fn)mqtt_client_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
-    esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
+    //esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
 
     /* Terminate thread */
     esp_sys_thread_terminate(NULL);
@@ -93,8 +120,8 @@ static espr_t
 esp_evt(esp_evt_t* evt) {
     switch (evt->type) {
         case ESP_EVT_INIT_FINISH: {
-            esp_set_at_baudrate(115200, 0);
-            esp_hostname_set("esp_device", 0);
+            /* Device is not present on init */
+            esp_device_set_present(0, NULL, NULL, 0);
             break;
         }
         case ESP_EVT_RESET: {
@@ -126,7 +153,15 @@ esp_evt(esp_evt_t* evt) {
         }
         case ESP_EVT_WIFI_GOT_IP: {
             printf("WIFI GOT IP, get access point informatioN!\r\n");
-            esp_sta_get_ap_info(&connected_ap_info, 0);
+            esp_sta_get_ap_info(&connected_ap_info, NULL, NULL, 0);
+            break;
+        }
+        case ESP_EVT_WIFI_CONNECTED: {
+            printf("WIFI CONNECTED!\r\n");
+            break;
+        }
+        case ESP_EVT_WIFI_DISCONNECTED: {
+            printf("WIFI DISCONNECTED!\r\n");
             break;
         }
         case ESP_EVT_STA_INFO_AP: {

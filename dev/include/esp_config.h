@@ -30,8 +30,8 @@
  *
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
  */
-#ifndef __ESP_CONFIG_H
-#define __ESP_CONFIG_H  100
+#ifndef ESP_HDR_CONFIG_H
+#define ESP_HDR_CONFIG_H
 
 /**
  * User specific config which overwrites setup from esp_config_default.h file
@@ -84,4 +84,4 @@
  * \}
  */
 
-#endif /* __ESP_CONFIG_H */
+#endif /* ESP_HDR_CONFIG_H */

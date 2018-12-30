@@ -31,6 +31,9 @@
     <Filter Include="Source Files\ESP SNIPPETS">
       <UniqueIdentifier>{f53eba69-7eb3-428c-9053-e398ae95bf8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ESP CLI">
+      <UniqueIdentifier>{3b90bd2c-2305-40af-9d58-f49b6817bc2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -146,9 +149,6 @@
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_mdns.c">
       <Filter>Source Files\ESP CORE</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ESP_AT_Lib\src\api\esp_rest_client.c">
-      <Filter>Source Files\ESP API</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\snippets\netconn_server_1thread.c">
       <Filter>Source Files\ESP SNIPPETS</Filter>
     </ClCompile>
@@ -157,6 +157,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\snippets\mqtt_client_api.c">
       <Filter>Source Files\ESP SNIPPETS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\cli\cli.c">
+      <Filter>Source Files\ESP CLI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\cli\cli_input.c">
+      <Filter>Source Files\ESP CLI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_cli.c">
+      <Filter>Source Files\ESP CLI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
