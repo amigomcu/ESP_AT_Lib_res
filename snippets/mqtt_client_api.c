@@ -53,7 +53,7 @@ mqtt_client_api_thread(void const* arg) {
         printf("Joining MQTT server\r\n");
 
         /* Try to join */
-        conn_status = esp_mqtt_client_api_connect(client, "test.mosquitto.org", 1883, &mqtt_client_info);
+        conn_status = esp_mqtt_client_api_connect(client, "broker.hivemq.com", 1883, &mqtt_client_info);
         if (conn_status == ESP_MQTT_CONN_STATUS_ACCEPTED) {
             printf("Connected and accepted!\r\n");
             printf("Client is ready to subscribe and publish to new messages\r\n");
