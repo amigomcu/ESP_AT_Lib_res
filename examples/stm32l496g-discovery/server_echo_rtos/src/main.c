@@ -154,7 +154,6 @@ server_callback_func(esp_evt_t* evt) {
                 printf("Error while sending data!\r\n");
             }
             break;
-            break;
         }
         default: break;
     }
