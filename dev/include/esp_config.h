@@ -33,9 +33,7 @@
 #ifndef ESP_HDR_CONFIG_H
 #define ESP_HDR_CONFIG_H
 
-/**
- * User specific config which overwrites setup from esp_config_default.h file
- */
+/* User specific config which overwrites setup from esp_config_default.h file */
 
 #if !__DOXYGEN__
 #define ESP_CFG_NETCONN                     1

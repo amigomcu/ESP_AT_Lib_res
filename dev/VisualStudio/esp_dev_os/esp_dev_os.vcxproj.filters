@@ -50,9 +50,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="esp_dev_os.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp.c">
       <Filter>Source Files\ESP CORE</Filter>
     </ClCompile>
@@ -166,6 +163,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_cli.c">
       <Filter>Source Files\ESP CLI</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\snippets\mqtt_client_api_cayenne.c">
+      <Filter>Source Files\ESP SNIPPETS</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
