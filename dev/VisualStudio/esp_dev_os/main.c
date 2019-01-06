@@ -5,6 +5,7 @@
 #include "windows.h"
 #include "esp/esp.h"
 #include "esp/apps/esp_http_server.h"
+#include "esp/apps/esp_mqtt_client_api.h"
 
 #include "mqtt_client.h"
 #include "mqtt_client_api.h"
@@ -13,6 +14,7 @@
 #include "netconn_client.h"
 #include "netconn_server.h"
 #include "netconn_server_1thread.h"
+#include "string.h"
 
 static void main_thread(void* arg);
 DWORD main_thread_id;
@@ -23,6 +25,8 @@ static espr_t esp_conn_evt(esp_evt_t* evt);
 esp_sta_info_ap_t connected_ap_info;
 
 uint32_t ping_time;
+
+#define safeprintf          printf
 
 void
 ping_fn(espr_t res, void* arg) {
@@ -65,12 +69,11 @@ main() {
  */
 static void
 main_thread(void* arg) {
-
     /* Init ESP library */
     esp_init(esp_evt, 1);
 
     /* Start thread to toggle device present */
-    esp_sys_thread_create(NULL, "device_present", (esp_sys_thread_fn)esp_device_present_toggle, NULL, 0, ESP_SYS_THREAD_PRIO);
+    //esp_sys_thread_create(NULL, "device_present", (esp_sys_thread_fn)esp_device_present_toggle, NULL, 0, ESP_SYS_THREAD_PRIO);
 
     /*
      * Try to connect to preferred access point
@@ -94,10 +97,10 @@ main_thread(void* arg) {
         printf("Device IP: %d.%d.%d.%d\r\n", ip.ip[0], ip.ip[1], ip.ip[2], ip.ip[3]);
     }
 
-    while (1) {
-        esp_ping("majerle.eu", &ping_time, ping_fn, "majerle.eu", 0);
-        esp_delay(2000);
-    }
+    //while (1) {
+        //esp_ping("majerle.eu", &ping_time, ping_fn, "majerle.eu", 0);
+        //    esp_delay(2000);
+    //}
 
     /* Start server on port 80 */
     //http_server_start();
@@ -106,6 +109,7 @@ main_thread(void* arg) {
     //esp_sys_thread_create(NULL, "netconn_server_single", (esp_sys_thread_fn)netconn_server_1thread_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "mqtt_client", (esp_sys_thread_fn)mqtt_client_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
+    esp_sys_thread_create(NULL, "mqtt_client_api_cayenne", (esp_sys_thread_fn)mqtt_client_api_cayenne_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
 
     /* Terminate thread */
     esp_sys_thread_terminate(NULL);
@@ -121,7 +125,7 @@ esp_evt(esp_evt_t* evt) {
     switch (evt->type) {
         case ESP_EVT_INIT_FINISH: {
             /* Device is not present on init */
-            esp_device_set_present(0, NULL, NULL, 0);
+            //esp_device_set_present(0, NULL, NULL, 0);
             break;
         }
         case ESP_EVT_RESET: {
@@ -250,6 +254,7 @@ esp_conn_evt(esp_evt_t* evt) {
             printf("Connection error!\r\n");
             break;
         }
+        default: break;
     }
     return espOK;
 }
