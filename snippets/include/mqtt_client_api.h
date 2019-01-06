@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 void mqtt_client_api_thread(void const* arg);
+void mqtt_client_api_cayenne_thread(void const* arg);
 
 #ifdef __cplusplus
 }
