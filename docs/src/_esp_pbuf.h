@@ -12,7 +12,7 @@
  * From the image above, we can see that we can chain buffers together to create quasi-linear block of data.
  * Each packet buffer consists of:
  *
- *  - Pointer to next pbuf in a chain or `NULL` of last one
+ *  - Pointer to next pbuf in a chain or `NULL` if last one
  *  - Length of current pbuf
  *  - Length of current and all next in chain
  *      - When pbuf is last, this value is the same as length of it
@@ -24,7 +24,7 @@
  * In table below you can see what is written in memory on the image above.
  *
  * <table>
- *  <tr><th>Block number    <th>Next packet buffer  <th>Size of block   <th>Total size of chain <th>Reference counter   </tr>
+ *  <tr><th>Block number    <th>Next packet buffer  <th>Block size      <th>Total size of chain <th>Reference counter   </tr>
  *  <tr><td>Block 1         <td>Block 2             <td>150             <td>550                 <td>1                   </tr>
  *  <tr><td>Block 2         <td>Block 3             <td>130             <td>400                 <td>2                   </tr>
  *  <tr><td>Block 3         <td>NULL                <td>270             <td>270                 <td>1                   </tr>
@@ -52,7 +52,7 @@
  * \image html pbuf_block_diagram_after_free.svg Block diagram of pbuf chain after free from user variable `1`.
  *
  * <table>
- *  <tr><th>Block number    <th>Next packet buffer  <th>Size of block   <th>Total size of chain <th>Reference counter   </tr>
+ *  <tr><th>Block number    <th>Next packet buffer  <th>Block size      <th>Total size of chain <th>Reference counter   </tr>
  *  <tr><td>Block 2         <td>Block 3             <td>130             <td>400                 <td>1                   </tr>
  *  <tr><td>Block 3         <td>NULL                <td>270             <td>270                 <td>1                   </tr>
  * </table>
