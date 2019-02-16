@@ -1,7 +1,6 @@
 // esp_dev_os.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 #include "windows.h"
 #include "esp/esp.h"
 #include "esp/apps/esp_http_server.h"

@@ -31,7 +31,6 @@
  * Before you start using WIN32 implementation with USB and VCP,
  * check esp_ll_win32.c implementation and choose your COM port!
  */
-#include "stdafx.h"
 #include "esp/esp.h"
 #include "station_manager.h"
 #include "netconn_server.h"
