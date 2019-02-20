@@ -50,9 +50,9 @@
  *
  * \section         sect_project_examples Example projects
  *
- * \note            Examples are part of `ESP_AT_Lib_res` repository. Refer to \ref sect_clone_res
- *
  * Several examples are available to show application use cases. These are split and can be tested on different systems.
+ *
+ * \note            Examples are part of `ESP_AT_Lib_res` repository. Refer to \ref sect_clone_res
  *
  * \subsection      sect_project_examples_win32 WIN32 examples
  *
@@ -249,7 +249,7 @@
  *
  * All these commands must be reported to user. To do this, callback is triggered to notify user.
  *
- * \section 		sect_events_and_callbacks Events and callback functions
+ * \section         sect_events_and_callbacks Events and callback functions
  *
  * To make library very efficient, events and callback functions are implemented. They are separated in different groups.
  *

@@ -11,7 +11,7 @@
  *
  * \note            In case you do not fulfill these part, please update software on ESP to latest. Check \ref page_update_at_software section.
  *
- * \section 		sect_faq_can_rtos Can I use this library with operating system?
+ * \section         sect_faq_can_rtos Can I use this library with operating system?
  *
  * You may (and you <b>have to</b>) use this library with and only with operating system (or RTOS).
  * Library has advanced techniques to handle `AT` based software approach which is very optimized when used
