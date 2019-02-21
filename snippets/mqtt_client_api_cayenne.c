@@ -63,7 +63,7 @@ beg:
                 if (esp_mqtt_client_api_subscribe(client, mqtt_client_str, ESP_MQTT_QOS_AT_LEAST_ONCE) == espOK) {
                     safeprintf("[MQTT] Subscribed to topic: %s\r\n", mqtt_client_str);
                 } else {
-                    safeprintf("[MQTT] Problem subscribing to topic!\r\n");
+                    safeprintf("[MQTT] Problems subscribing to topic!\r\n");
                 }
 
                 /* Start accepting and publishing data */
