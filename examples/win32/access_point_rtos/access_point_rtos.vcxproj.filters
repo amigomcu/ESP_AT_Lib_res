@@ -46,9 +46,6 @@
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_int.c">
       <Filter>Source Files\ESP CORE</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ESP_AT_Lib\src\system\esp_ll_win32.c">
-      <Filter>Source Files\ESP CORE</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_parser.c">
       <Filter>Source Files\ESP CORE</Filter>
     </ClCompile>
@@ -79,9 +76,6 @@
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\system\esp_sys_win32.c">
       <Filter>Source Files\ESP LL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_mem.c">
-      <Filter>Source Files\ESP LL</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\api\esp_netconn.c">
       <Filter>Source Files\ESP API</Filter>
     </ClCompile>
@@ -90,6 +84,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_evt.c">
       <Filter>Source Files\ESP CORE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_mem.c">
+      <Filter>Source Files\ESP CORE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\system\esp_ll_win32.c">
+      <Filter>Source Files\ESP LL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
