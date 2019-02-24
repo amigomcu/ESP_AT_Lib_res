@@ -3,8 +3,8 @@
 
 #include "windows.h"
 #include "esp/esp.h"
-#include "esp/apps/esp_http_server.h"
 #include "esp/apps/esp_mqtt_client_api.h"
+#include "esp/apps/esp_cayenne.h"
 
 #include "mqtt_client.h"
 #include "mqtt_client_api.h"
@@ -27,25 +27,21 @@ uint32_t ping_time;
 
 #define safeprintf          printf
 
-void
-ping_fn(espr_t res, void* arg) {
-    printf("Ping to %s finished with result: %d and time: %d\r\n", (const char *)arg, (int)res, (int)ping_time);
-}
-
 /**
- * \brief           Thread for toggling ESP present status
+ * \brief           MQTT client info for server
  */
-void
-esp_device_present_toggle(void const * arg) {
-    while (1) {
-        printf("Setting device present...\r\n");
-        esp_device_set_present(1, NULL, NULL, 1);
-        esp_delay(30000);
-        printf("Setting device not present...\r\n");
-        esp_device_set_present(0, NULL, NULL, 1);
-        esp_delay(5000);
-    }
-}
+const esp_mqtt_client_info_t
+cayenne_mqtt_client_info = {
+    .id = "408793d0-3810-11e9-86b5-4fe3d2557533",
+
+    .user = "8a215f70-a644-11e8-ac49-e932ed599553",
+    .pass = "26aa943f702e5e780f015cd048a91e8fb54cca28",
+
+    .keep_alive = 10,
+};
+
+esp_mqtt_client_api_p cayenne_client;
+esp_cayenne_t cayenne;
 
 /**
  * \brief           Program entry point
@@ -108,7 +104,27 @@ main_thread(void* arg) {
     //esp_sys_thread_create(NULL, "netconn_server_single", (esp_sys_thread_fn)netconn_server_1thread_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "mqtt_client", (esp_sys_thread_fn)mqtt_client_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
-    esp_sys_thread_create(NULL, "mqtt_client_api_cayenne", (esp_sys_thread_fn)mqtt_client_api_cayenne_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
+    //esp_sys_thread_create(NULL, "mqtt_client_api_cayenne", (esp_sys_thread_fn)mqtt_client_api_cayenne_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
+
+    cayenne_client = esp_mqtt_client_api_new(256, 256);
+    esp_cayenne_create(&cayenne, cayenne_client, &cayenne_mqtt_client_info);
+
+    esp_delay(10000);
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "IoT Board for CayenneAPI");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_VERSION, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "v1.0");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "ARM Cortex-M4");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_SPEED, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "180000000");
+
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 30, "temp", "c", "13");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 31, "temp", "f", "13");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 32, "voltage", "mv", "123");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 34, "soil_w_ten", "kpa", "16");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 35, "rel_hum", "p", "29");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 36, "analog_actuator", NULL, "255");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 37, "digital_actuator", "d", "1");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 38, "analog_sensor", NULL, "255");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 39, "digital_sensor", "d", "0");
+    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 40, "digital_sensor", "d", "1");
 
     /* Terminate thread */
     esp_sys_thread_terminate(NULL);
