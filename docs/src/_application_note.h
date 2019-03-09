@@ -8,13 +8,13 @@
  *
  * There are `2` repositories
  *
- *	- <a href="https://github.com/MaJerle/ESP_AT_Lib"><b>ESP_AT_Lib</b></a>: Source code of library itself.
- *	    - Repository is required when developing final project
+ *  - <a href="https://github.com/MaJerle/ESP_AT_Lib"><b>ESP_AT_Lib</b></a>: Source code of library itself.
+ *      - Repository is required when developing final project
  *
- *	- <a href="https://github.com/MaJerle/ESP_AT_Lib_res"><b>ESP_AT_Lib_res</b></a>: Resources, development code,
- *		documentation sources, examples, code snippets, etc.
+ *  - <a href="https://github.com/MaJerle/ESP_AT_Lib_res"><b>ESP_AT_Lib_res</b></a>: Resources, development code,
+ *      documentation sources, examples, code snippets, etc.
  *      - This repository uses `ESP_AT_Lib` repository as `submodule`
- *	    - Repository is used to evaluate library using prepared examples
+ *      - Repository is used to evaluate library using prepared examples
  *
  * \subsection      sect_clone_res Clone resources with examples
  *
@@ -97,25 +97,25 @@
  *
  *  <table>
  *      <caption>STM32 boards and pinouts for tests</caption>
- *      <tr><th> 						<th colspan="7">ESP target settings							<th colspan="5">Debug settings
- *      <tr><th>Board name				<th>UART 	<th>MTX <th>MRX <th>RST <th>GPI0<th>GPI2<th>CHPD<th>UART    <th>MDTX<th>MDRX<th>DBD     <th>Comment
- *      <tr><td>\b STM32F769I-Discovery <td>UART5 	<td>PC12<td>PD2 <td>PJ14<td>-   <td>-   <td>-   <td>USART1  <td>PA9 <td>PA10<td>921600  <td>OBSTL
- *      <tr><td>\b STM32F723E-Discovery <td>UART5 	<td>PC12<td>PD2 <td>PG14<td>-   <td>PD6 <td>PD3 <td>USART6  <td>PC6 <td>PC7 <td>921600  <td>OBSTL
- *      <tr><td>\b STM32L496G-Discovery <td>USART1 	<td>PB6 <td>PG10<td>PB2 <td>PH2 <td>PA0 <td>PA4 <td>USART2  <td>PA2 <td>PD6 <td>921600  <td>OBSTL
- *      <tr><td>\b STM32L432KC-Nucleo   <td>USART1 	<td>PA9 <td>PA10<td>PA12<td>PA7 <td>PA6 <td>PB0 <td>USART2  <td>PA2 <td>PA3 <td>921600  <td>OBSTL
- *      <tr><td>\b STM32F429ZI-Nucleo   <td>USART2 	<td>PD5 <td>PD6 <td>PD1 <td>PD4 <td>PD7 <td>PD3 <td>USART3  <td>PD8 <td>PD9 <td>921600  <td>OBSTL
+ *      <tr><th>                        <th colspan="7">ESP target settings                         <th colspan="5">Debug settings
+ *      <tr><th>Board name              <th>UART    <th>MTX <th>MRX <th>RST <th>GPI0<th>GPI2<th>CHPD<th>UART    <th>MDTX<th>MDRX<th>DBD     <th>Comment
+ *      <tr><td>\b STM32F769I-Discovery <td>UART5   <td>PC12<td>PD2 <td>PJ14<td>-   <td>-   <td>-   <td>USART1  <td>PA9 <td>PA10<td>921600  <td>OBSTL
+ *      <tr><td>\b STM32F723E-Discovery <td>UART5   <td>PC12<td>PD2 <td>PG14<td>-   <td>PD6 <td>PD3 <td>USART6  <td>PC6 <td>PC7 <td>921600  <td>OBSTL
+ *      <tr><td>\b STM32L496G-Discovery <td>USART1  <td>PB6 <td>PG10<td>PB2 <td>PH2 <td>PA0 <td>PA4 <td>USART2  <td>PA2 <td>PD6 <td>921600  <td>OBSTL
+ *      <tr><td>\b STM32L432KC-Nucleo   <td>USART1  <td>PA9 <td>PA10<td>PA12<td>PA7 <td>PA6 <td>PB0 <td>USART2  <td>PA2 <td>PA3 <td>921600  <td>OBSTL
+ *      <tr><td>\b STM32F429ZI-Nucleo   <td>USART2  <td>PD5 <td>PD6 <td>PD1 <td>PD4 <td>PD7 <td>PD3 <td>USART3  <td>PD8 <td>PD9 <td>921600  <td>OBSTL
  *  </table>
  *
- * 	- \b MTX: MCU TX pin, other device RX pin
- * 	- \b MRX: MCU RX pin, other device TX pin
- * 	- \b RST: Reset pin from ESP device, connected to MCU
- * 	- \b GPI0: ESP GPIO0 pin, connected to MCU
- * 	- \b GPI2: ESP GPIO0 pin, connected to MCU
- * 	- \b CHPD: ESP CH PD pin, connected to MCU
- * 	- \b MDTX: MCU Debug TX pin, other device RX pin
- * 	- \b MDRX: MCU Debug RX pin, other device TX pin
- * 	- \b DBD: Debug UART baudrate
- * 	- \b OBSTL: On-Board ST-Link USB virtual COM port
+ *  - \b MTX: MCU TX pin, other device RX pin
+ *  - \b MRX: MCU RX pin, other device TX pin
+ *  - \b RST: Reset pin from ESP device, connected to MCU
+ *  - \b GPI0: ESP GPIO0 pin, connected to MCU
+ *  - \b GPI2: ESP GPIO0 pin, connected to MCU
+ *  - \b CHPD: ESP CH PD pin, connected to MCU
+ *  - \b MDTX: MCU Debug TX pin, other device RX pin
+ *  - \b MDRX: MCU Debug RX pin, other device TX pin
+ *  - \b DBD: Debug UART baudrate
+ *  - \b OBSTL: On-Board ST-Link USB virtual COM port
  *
  * \note            All examples for STM32 come with ST's official free development studio.
  *

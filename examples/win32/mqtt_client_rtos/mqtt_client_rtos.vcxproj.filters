@@ -100,7 +100,7 @@
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_evt.c">
       <Filter>Source Files\ESP CORE</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_utilities.c">
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_utils.c">
       <Filter>Source Files\ESP CORE</Filter>
     </ClCompile>
   </ItemGroup>

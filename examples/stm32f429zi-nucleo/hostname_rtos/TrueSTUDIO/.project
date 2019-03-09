@@ -167,9 +167,9 @@
 			<locationURI>PARENT-4-PROJECT_LOC/ESP_AT_Lib/src/esp/esp_unicode.c</locationURI>
 		</link>
 		<link>
-			<name>ESP CORE/esp_utilities.c</name>
+			<name>ESP CORE/esp_utils.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/ESP_AT_Lib/src/esp/esp_utilities.c</locationURI>
+			<locationURI>PARENT-4-PROJECT_LOC/ESP_AT_Lib/src/esp/esp_utils.c</locationURI>
 		</link>
 		<link>
 			<name>ESP CORE/esp_wps.c</name>

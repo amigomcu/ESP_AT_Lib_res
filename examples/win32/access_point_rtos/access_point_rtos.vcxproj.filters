@@ -91,7 +91,7 @@
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\system\esp_ll_win32.c">
       <Filter>Source Files\ESP LL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_utilities.c">
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_utils.c">
       <Filter>Source Files\ESP CORE</Filter>
     </ClCompile>
   </ItemGroup>

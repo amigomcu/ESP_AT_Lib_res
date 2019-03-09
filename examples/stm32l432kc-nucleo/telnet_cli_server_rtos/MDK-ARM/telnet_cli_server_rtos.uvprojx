@@ -598,9 +598,9 @@
               <FilePath>..\..\..\..\ESP_AT_Lib\src\esp\esp_wps.c</FilePath>
             </File>
             <File>
-              <FileName>esp_utilities.c</FileName>
+              <FileName>esp_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\ESP_AT_Lib\src\esp\esp_utilities.c</FilePath>
+              <FilePath>..\..\..\..\ESP_AT_Lib\src\esp\esp_utils.c</FilePath>
             </File>
           </Files>
         </Group>

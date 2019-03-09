@@ -14,6 +14,7 @@
 #include "netconn_server.h"
 #include "netconn_server_1thread.h"
 #include "string.h"
+#include "esp/esp_timeout.h"
 
 static void main_thread(void* arg);
 DWORD main_thread_id;
@@ -59,13 +60,33 @@ main() {
 	}
 }
 
+
+void
+time_thread_func(void* const arg) {
+    while (1) {
+        uint32_t time = esp_sys_now();
+        printf("Time: %u d, %u h, %u m, %u s, %u ms, Rem seconds: %u\r\n",
+            time / 1000 / 3600 / 24,
+            time / 1000 / 3600,
+            time / 1000 / 60,
+            time / 1000,
+            time,
+            (0xFFFFFFFF / 1000) - (time / 1000)
+        );
+        esp_delay(1000);
+    }
+}
+
 /**
  * \brief           Main thread for init purposes
  */
 static void
 main_thread(void* arg) {
+
     /* Init ESP library */
     esp_init(esp_evt, 1);
+
+    esp_sys_thread_create(NULL, "time", (esp_sys_thread_fn)time_thread_func, NULL, 0, ESP_SYS_THREAD_PRIO);
 
     /* Start thread to toggle device present */
     //esp_sys_thread_create(NULL, "device_present", (esp_sys_thread_fn)esp_device_present_toggle, NULL, 0, ESP_SYS_THREAD_PRIO);
@@ -111,20 +132,21 @@ main_thread(void* arg) {
 
     esp_delay(10000);
     esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "IoT Board for CayenneAPI");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_VERSION, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "v1.0");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "ARM Cortex-M4");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_SPEED, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "180000000");
 
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 30, "temp", "c", "13");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 31, "temp", "f", "13");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 32, "voltage", "mv", "123");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 34, "soil_w_ten", "kpa", "16");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 35, "rel_hum", "p", "29");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 36, "analog_actuator", NULL, "255");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 37, "digital_actuator", "d", "1");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 38, "analog_sensor", NULL, "255");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 39, "digital_sensor", "d", "0");
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 40, "digital_sensor", "d", "1");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_VERSION, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "v1.0");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "ARM Cortex-M4");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_SPEED, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "180000000");
+
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 30, "temp", "c", "13");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 31, "temp", "f", "13");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 32, "voltage", "mv", "123");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 34, "soil_w_ten", "kpa", "16");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 35, "rel_hum", "p", "29");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 36, "analog_actuator", NULL, "255");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 37, "digital_actuator", "d", "1");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 38, "analog_sensor", NULL, "255");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 39, "digital_sensor", "d", "0");
+    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 40, "digital_sensor", "d", "1");
 
     /* Terminate thread */
     esp_sys_thread_terminate(NULL);
