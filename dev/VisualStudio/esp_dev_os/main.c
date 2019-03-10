@@ -86,10 +86,9 @@ main_thread(void* arg) {
     /* Init ESP library */
     esp_init(esp_evt, 1);
 
-    esp_sys_thread_create(NULL, "time", (esp_sys_thread_fn)time_thread_func, NULL, 0, ESP_SYS_THREAD_PRIO);
-
     /* Start thread to toggle device present */
     //esp_sys_thread_create(NULL, "device_present", (esp_sys_thread_fn)esp_device_present_toggle, NULL, 0, ESP_SYS_THREAD_PRIO);
+    //esp_sys_thread_create(NULL, "time", (esp_sys_thread_fn)time_thread_func, NULL, 0, ESP_SYS_THREAD_PRIO);
 
     /*
      * Try to connect to preferred access point
@@ -127,26 +126,31 @@ main_thread(void* arg) {
     //esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "mqtt_client_api_cayenne", (esp_sys_thread_fn)mqtt_client_api_cayenne_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
 
-    cayenne_client = esp_mqtt_client_api_new(256, 256);
-    esp_cayenne_create(&cayenne, cayenne_client, &cayenne_mqtt_client_info);
+    if (esp_cayenne_create(&cayenne, &cayenne_mqtt_client_info) != espOK) {
+        printf("Cannot create new cayenne instance!\r\n");
+    } else {
+        printf("Waiting for connection to cayenne...\r\n");
+        while (!esp_mqtt_client_api_is_connected(cayenne.api_c)) {
+            esp_delay(1000);
+        }
+        printf("Connected to cayenne...\r\n");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "IoT Board for CayenneAPI");
 
-    esp_delay(10000);
-    esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "IoT Board for CayenneAPI");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_VERSION, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "v1.0");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "ARM Cortex-M4");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_SPEED, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "180000000");
 
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_VERSION, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "v1.0");
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "ARM Cortex-M4");
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_SPEED, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "180000000");
-
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 30, "temp", "c", "13");
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 31, "temp", "f", "13");
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 32, "voltage", "mv", "123");
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 34, "soil_w_ten", "kpa", "16");
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 35, "rel_hum", "p", "29");
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 36, "analog_actuator", NULL, "255");
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 37, "digital_actuator", "d", "1");
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 38, "analog_sensor", NULL, "255");
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 39, "digital_sensor", "d", "0");
-    //esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 40, "digital_sensor", "d", "1");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 30, "temp", "c", "13");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 31, "temp", "f", "13");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 32, "voltage", "mv", "123");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 34, "soil_w_ten", "kpa", "16");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 35, "rel_hum", "p", "29");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 36, "analog_actuator", NULL, "255");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 37, "digital_actuator", "d", "1");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 38, "analog_sensor", NULL, "255");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 39, "digital_sensor", "d", "0");
+        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 40, "digital_sensor", "d", "1");
+    }
 
     /* Terminate thread */
     esp_sys_thread_terminate(NULL);

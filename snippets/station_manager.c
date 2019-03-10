@@ -47,9 +47,11 @@ connect_to_preferred_access_point(uint8_t unlimited) {
      * try to connect to known AP
      */
     do {
-        /*
-         * Scan for access points visible to ESP device
-         */
+        if (esp_sta_has_ip()) {
+            return espOK;
+        }
+
+        /* Scan for access points visible to ESP device */
         printf("Scanning access points...\r\n");
         if ((eres = esp_sta_list_ap(NULL, aps, ESP_ARRAYSIZE(aps), &apf, NULL, NULL, 1)) == espOK) {
             tried = 0;
