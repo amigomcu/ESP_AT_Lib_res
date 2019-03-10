@@ -148,11 +148,14 @@
     <ClCompile Include="..\..\..\snippets\mqtt_client_api_cayenne.c">
       <Filter>Source Files\ESP SNIPPETS</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\mqtt\esp_cayenne.c">
-      <Filter>Source Files\ESP APPS MQTT</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_utils.c">
       <Filter>Source Files\ESP CORE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\cayenne\esp_cayenne.c">
+      <Filter>Source Files\ESP APPS MQTT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\cayenne\esp_cayenne_evt.c">
+      <Filter>Source Files\ESP APPS MQTT</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

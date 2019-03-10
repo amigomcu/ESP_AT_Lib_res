@@ -78,6 +78,55 @@ time_thread_func(void* const arg) {
 }
 
 /**
+ * \brief           Cayenne callback function
+ */
+espr_t
+cayenne_evt_func(esp_cayenne_t* c, esp_cayenne_evt_t* evt) {
+    switch (esp_cayenne_evt_get_type(evt)) {
+        case ESP_CAYENNE_EVT_CONNECT: {
+            printf("Cayenne connected!\r\n");
+
+            /* Once connected, send device status */
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_SYS_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "IoT Board for CayenneAPI");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_SYS_VERSION, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "v1.0");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_SYS_CPU_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "ARM Cortex-M4");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_SYS_CPU_SPEED, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "180000000");
+
+#if 0                                    
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_DATA, 30, "temp", "c", "13");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_DATA, 31, "temp", "f", "13");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_DATA, 32, "voltage", "mv", "123");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_DATA, 34, "soil_w_ten", "kpa", "16");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_DATA, 35, "rel_hum", "p", "29");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_DATA, 36, "analog_actuator", NULL, "255");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_DATA, 37, "digital_actuator", "d", "1");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_DATA, 38, "analog_sensor", NULL, "255");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_DATA, 39, "digital_sensor", "d", "0");
+            esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_DATA, 40, "digital_sensor", "d", "1");
+#endif
+
+            break;
+        }
+        case ESP_CAYENNE_EVT_DISCONNECT: {
+            printf("Cayenne disconnected!\r\n");
+            break;
+        }
+        case ESP_CAYENNE_EVT_DATA: {
+            esp_cayenne_msg_t* msg = esp_cayenne_evt_data_get_msg(evt);
+            if (msg->topic == ESP_CAYENNE_TOPIC_COMMAND) {
+                /* Send callback to user, this part should be handled in user callback */
+                /* Written here for test purposes only! */
+                esp_cayenne_publish_response(c, msg, ESP_CAYENNE_RESP_OK, NULL);
+                esp_cayenne_publish_data(c, ESP_CAYENNE_TOPIC_DATA, msg->channel, NULL, NULL, msg->values[0].value);
+            }
+            break;
+        }
+        default: break;
+    }
+    return espOK;
+}
+
+/**
  * \brief           Main thread for init purposes
  */
 static void
@@ -126,30 +175,10 @@ main_thread(void* arg) {
     //esp_sys_thread_create(NULL, "mqtt_client_api", (esp_sys_thread_fn)mqtt_client_api_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "mqtt_client_api_cayenne", (esp_sys_thread_fn)mqtt_client_api_cayenne_thread, NULL, 0, ESP_SYS_THREAD_PRIO);
 
-    if (esp_cayenne_create(&cayenne, &cayenne_mqtt_client_info) != espOK) {
+    if (esp_cayenne_create(&cayenne, &cayenne_mqtt_client_info, cayenne_evt_func) != espOK) {
         printf("Cannot create new cayenne instance!\r\n");
     } else {
-        printf("Waiting for connection to cayenne...\r\n");
-        while (!esp_mqtt_client_api_is_connected(cayenne.api_c)) {
-            esp_delay(1000);
-        }
-        printf("Connected to cayenne...\r\n");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "IoT Board for CayenneAPI");
 
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_VERSION, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "v1.0");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_MODEL, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "ARM Cortex-M4");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_SYS_CPU_SPEED, ESP_CAYENNE_NO_CHANNEL, NULL, NULL, "180000000");
-
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 30, "temp", "c", "13");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 31, "temp", "f", "13");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 32, "voltage", "mv", "123");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 34, "soil_w_ten", "kpa", "16");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 35, "rel_hum", "p", "29");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 36, "analog_actuator", NULL, "255");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 37, "digital_actuator", "d", "1");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 38, "analog_sensor", NULL, "255");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 39, "digital_sensor", "d", "0");
-        esp_cayenne_publish_data(&cayenne, ESP_CAYENNE_TOPIC_DATA, 40, "digital_sensor", "d", "1");
     }
 
     /* Terminate thread */
