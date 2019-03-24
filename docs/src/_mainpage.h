@@ -9,13 +9,13 @@
  *
  * \section         sect_features Features
  *
- *  - Supports latest ESP8266 and ESP32 AT commands software
- *  - Platform independent and very easy to port
- *     - Development of library under Win32 platform
+ *  - Supports latest ESP8266 and ESP32 AT commands firmware
+ *  - Platform independent and easy to port
+ *     - Library is developed under Win32 platform
  *     - Provided examples for ARM Cortex-M or Win32 platforms
  *  - Written in C language (C99)
  *  - Allows different configurations to optimize user requirements
- *  - Supports implementation with operating systems with advanced inter-thread communications
+ *  - Optimized for systems with operating systems (or RTOS)
  *      - Currently only OS mode is supported
  *      - 2 different threads handling user data and received data
  *          - First (producer) thread (collects user commands from user threads and starts the command processing)
@@ -24,7 +24,8 @@
  *  - Includes several applications built on top of library:
  *      - \ref ESP_APP_HTTP_SERVER with dynamic files (file system) support
  *      - \ref ESP_APP_MQTT_CLIENT for MQTT connection
- *  - Embeds other AT features, such as \ref ESP_WPS, \ref ESP_PING, \ref ESP_HOSTNAME and others
+ *      - \ref ESP_APP_CAYENNE_API for Cayenne MQTT server
+ *  - Embeds other AT features, such as \ref ESP_WPS, \ref ESP_PING, \ref ESP_HOSTNAME
  *
  * \section         sect_resources Download & Resources
  *
