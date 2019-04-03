@@ -139,6 +139,16 @@ main_thread(void* arg) {
     //esp_sys_thread_create(NULL, "device_present", (esp_sys_thread_fn)esp_device_present_toggle, NULL, 0, ESP_SYS_THREAD_PRIO);
     //esp_sys_thread_create(NULL, "time", (esp_sys_thread_fn)time_thread_func, NULL, 0, ESP_SYS_THREAD_PRIO);
 
+    esp_dns_set_config(1, "123.123.321.321", "31.321.321.321", 1, NULL, NULL, 1);
+    esp_dns_set_config(1, "123.123.321.321", "31.321.321.321", 1, NULL, NULL, 1);
+    esp_dns_set_config(0, "123.123.321.321", "321.321.321.321", 1, NULL, NULL, 1);
+    esp_dns_set_config(1, "123.123.321.321", "1.2.3.4", 1, NULL, NULL, 1);
+    esp_dns_set_config(1, NULL, "321.321.321.321", 1, NULL, NULL, 1);
+    esp_dns_set_config(1, "123.456.789.123", NULL, 1, NULL, NULL, 1);
+    while (1) {
+        esp_delay(1000);
+    }
+
     /*
      * Try to connect to preferred access point
      *
