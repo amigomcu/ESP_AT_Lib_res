@@ -157,5 +157,8 @@
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\apps\cayenne\esp_cayenne_evt.c">
       <Filter>Source Files\ESP APPS MQTT</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_dns.c">
+      <Filter>Source Files\ESP CORE</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -102,6 +102,11 @@
 			<locationURI>PARENT-4-PROJECT_LOC/ESP_AT_Lib/src/esp/esp_debug.c</locationURI>
 		</link>
 		<link>
+			<name>ESP CORE/esp_dns.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/ESP_AT_Lib/src/esp/esp_dns.c</locationURI>
+		</link>
+		<link>
 			<name>ESP CORE/esp_evt.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/ESP_AT_Lib/src/esp/esp_evt.c</locationURI>

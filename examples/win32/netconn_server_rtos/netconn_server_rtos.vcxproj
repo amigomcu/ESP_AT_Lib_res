@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_dns.c" />
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_utils.c" />
     <ClCompile Include="..\..\..\snippets\netconn_server.c" />
     <ClCompile Include="..\..\..\snippets\station_manager.c" />

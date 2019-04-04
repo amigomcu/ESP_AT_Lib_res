@@ -103,5 +103,8 @@
     <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_utils.c">
       <Filter>Source Files\ESP CORE</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\ESP_AT_Lib\src\esp\esp_dns.c">
+      <Filter>Source Files\ESP CORE</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
