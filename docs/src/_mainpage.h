@@ -26,6 +26,7 @@
  *      - \ref ESP_APP_MQTT_CLIENT for MQTT connection
  *      - \ref ESP_APP_CAYENNE_API for Cayenne MQTT server
  *  - Embeds other AT features, such as \ref ESP_WPS, \ref ESP_PING, \ref ESP_HOSTNAME
+ *  - User friendly MIT license
  *
  * \section         sect_resources Download & Resources
  *
